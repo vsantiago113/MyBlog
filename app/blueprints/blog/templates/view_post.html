@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}Blog Post{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <a href="{{ url_for("user_profile", user_id=post.author.id) }}">{{ post.author.username }}</a> |
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{ post.pub_date.strftime("%B %d, %Y") }}
+        </h4>
+        <div class="post-body">{{ post.body|safe }}</div>
+        {% if post.author == g.user %}
+            <hr>
+            <a href="{{ url_for("blog.edit_post", post_id=post.id) }}" class="btn btn-default">Edit</a>
+            <button type="button" id="btn_delete" class="btn btn-danger">Delete</button>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $('#btn_delete').click( function (e) {
+                if (confirm('Are you sure you want to delete this post?')) {
+                    $.ajax({
+                        url: "{{ url_for('blog.delete_post') }}",
+                        type: "DELETE",
+                        data: JSON.stringify({'post_id': {{ post.id }}}),
+                        contentType: "application/json; charset=utf-8",
+                        success: function(dat) {
+                            if (dat.result == 'error') {
+                                alert("Hello World");
+                            } else if (dat.result == 'success') {
+                                window.location.href = {{ url_for('blog.view_posts') }};
+                            } else {
+                                alert("Hello World");
+                            }
+                        }
+                    });
+                    e.preventDefault();
+                } else {
+                    alert("Cancel Request to Delete");
+                }
+            });
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token() }}")
+                    }
+                }
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+			<h1 class="text-center">Blog Posts</h1>
+			<p class="text-center">On my blog, I share everything from coding snippets, software, cryptocurrency, and other technical tips that I have learned over the years. I post tutorials on how to do things like coding, fixing computers, information security, setting up servers, and network equipment.</p>
+			<div class="divider-blue"></div>
+		</div>
+	</div>
+	<div class="row">
+        {% if posts %}
+            {% for post in posts %}
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="blog-article">
+                        <img src="{{ images.url(post.image_name) }}" alt="{{ post.title }}" class="img-responsive">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.excerpt }}</p>
+                        <a href="{{ url_for('blog.view_post', post_id=post.id) }}" class="btn btn-default">Read...</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+	</div>
+</div>

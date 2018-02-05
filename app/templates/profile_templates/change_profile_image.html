@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}Change Profile Image | {{ g.user.username }}{% endblock title %}
+
+{% block content %}
+    <div class="container m-t-20">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                <div class="img-prev">
+                    <img src="#" id="preview_image">
+                </div>
+                <div class="text-center"><h3>Image size 350 x 235</h3></div>
+                <form role="form" method="POST" action="" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+                    <div class="form-group">
+                        {{ form.image_name(class_="form-control", id="input_file") }}
+                    </div>
+                    {% if form.image_name.errors %}
+                        {% for error in form.image_name.errors %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="True">×</span></button>
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        {{ form.submit(class_="btn btn-default") }}
+                        <a href="{{ url_for('delete_profile_image') }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview_image').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+            else {
+                $('#preview_image').attr('src', '#');
+            }
+        }
+
+        $("#input_file").change(function(){
+            readURL(this);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                background-color: #212121;
+                color: #fcfcfc;
+            }
+            .image-browser-container img {
+                max-width: 200px;
+                max-height: 200px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <div class="image-browser-container">
+            <div class="grid">
+            {% if image_list %}
+                {% for i in image_list %}
+                    <div class="grid-item">
+                        <img src="{{ i }}" alt="" class="img-thumbnail" onclick="returnFileUrl('{{ i }}')">
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ url_for("static", filename="js/vendor/jquery-3.2.1.min.js") }}"><\/script>')</script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/masonry.pkgd.min.js') }}"></script>
+        <script>
+            $('.grid').masonry({
+                // options
+                itemSelector: '.grid-item',
+                columnWidth: 200
+            });
+            // init Masonry
+            var $grid = $('.grid').masonry({
+                // options...
+            });
+            // layout Masonry after each image loads
+            $grid.imagesLoaded().progress( function() {
+                $grid.masonry('layout');
+            });
+            // Helper function to get parameters from the query string.
+            function getUrlParam( paramName ) {
+                var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+                var match = window.location.search.match( reParam );
+
+                return ( match && match.length > 1 ) ? match[1] : null;
+            }
+            // Simulate user action of selecting a file to be returned to CKEditor.
+            function returnFileUrl(file_url) {
+
+                var funcNum = getUrlParam( 'CKEditorFuncNum' );
+                var fileUrl = file_url;
+                window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+                window.close();
+            }
+        </script>
+    </body>
+</html>

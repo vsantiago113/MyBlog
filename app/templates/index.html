@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+        <div class="section-a">
+            {% include 'front_page_part/about_me.html' %}
+        </div>
+
+			{% include 'front_page_part/call_to_action.html' %}
+        
+        <div class="section-b">
+            {% include 'front_page_part/blog_posts.html' %}
+        </div>
+        
+        <div class="section-a">
+			{% include 'front_page_part/store_items.html' %}
+        </div>
+{% endblock %}

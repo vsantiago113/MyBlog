@@ -1,0 +1,77 @@
+<header>
+    <nav class="nav-bar nav-bar-dark">
+        <div class="container-fluid">
+            <div class="container-burger-icon" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="nav-bar-brand">
+                <a href="{{ url_for('home') }}"><span style="color: #3498DB;">print</span>(<span style="color: #27AE60;"> "The Jack of IT" </span>)</a>
+                <div><span id="typed"></span></div>
+            </div>
+            <ul id="burger-menu" class="burger-close">
+                {% if g.user.is_authenticated %}
+                    <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li>
+                        <div class="drop-down"><a href="#" id="dropdown-btn-blog">Blog <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <ul id="drop-down-blog">
+                                <li><a href="{{ url_for('blog.view_posts') }}">View Posts</a></li>
+                                {% if g.user.is_admin %}
+                                    <li><a href="{{ url_for('blog.create_post') }}">Create Post</a></li>
+                                {% else %}
+
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </li>
+{#                    <li>#}
+{#                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Crypto Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>#}
+{#                            <ul id="drop-down-tools">#}
+{#                                <li><a href="javascript: void(0);">Bitcoin Address</a></li>#}
+{#                                <li><a href="javascript: void(0);">Brain Wallet</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </li>#}
+                    <li>
+                        <div class="drop-down"><a href="#" id="dropdown-btn-store">Store <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <ul id="drop-down-store">
+                                <li><a href="{{ url_for("affiliate_store.view_store") }}">Visit Store</a></li>
+                                {% if g.user.is_admin %}
+                                    <li><a href="{{ url_for('affiliate_store.add_product') }}">Add Product</a></li>
+                                {% else %}
+
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="drop-down"><a href="#" id="dropdown-btn-profile">Settings <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <ul id="drop-down-profile">
+                                <li><a href="{{ url_for("my_profile") }}">MyProfile</a></li>
+                                <li><a href="{{ url_for('edit_profile') }}">Edit Profile</a></li>
+                                <li><a href="{{ url_for('change_profile_image') }}">Change Photo</a></li>
+                                <li><a href="{{ url_for('change_password') }}">Change Password</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+{#                    <li>#}
+{#                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Crypto Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>#}
+{#                            <ul id="drop-down-tools">#}
+{#                                <li><a href="javascript: void(0);">Bitcoin Address</a></li>#}
+{#                                <li><a href="javascript: void(0);">Brain Wallet</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </li>#}
+                    <li><a href="{{ url_for('blog.view_posts') }}">Blog</a></li>
+                    <li><a href="{{ url_for('affiliate_store.view_store') }}">Store</a></li>
+                    <li><a href="{{ url_for('registration') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>

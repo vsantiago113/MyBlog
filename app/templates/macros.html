@@ -1,0 +1,19 @@
+{% macro render_field(field) %}
+	{% if field.errors %}
+		{% for error in field.errors %}
+			<div>{{ error }}</div>
+		{% endfor %}
+	{% endif %}
+    {% if field.type in ("StringField", "PasswordField", "SelectField", "TextAreaField",
+                         "IntegerField", "DecimalField") %}
+	    {{ field(class_="form-control", placeholder=field.label.text, **kwargs)|safe }}
+        {% elif field.type == "SubmitField" %}
+            {{ field(class_="btn btn-default") }}
+        {% elif field.type == "BooleanField" %}
+            <div class="checkbox">
+                <label>{{ field }}{{ field.label.text }}</label>
+            </div>
+    {% else %}
+        {{ field }}
+    {% endif %}
+{% endmacro %}

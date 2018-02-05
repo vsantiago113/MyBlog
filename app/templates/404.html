@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block style %}
+    .page-not-found {
+        color: #888;
+        display: table;
+        font-family: sans-serif;
+        height: 100%;
+        text-align: center;
+        width: 100%;
+    }
+
+    .page-not-found * {
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .page-not-found > div {
+        display: table-cell;
+        vertical-align: middle;
+        margin: 2em auto;
+    }
+
+    .page-not-found h1 {
+        color: #555;
+        font-size: 2em;
+        font-weight: 400;
+    }
+
+    .page-not-found p {
+        margin: 0 auto;
+        width: 280px;
+    }
+
+    @media only screen and (max-width: 280px) {
+
+        .page-not-found > div, p {
+            width: 95%;
+        }
+
+        .page-not-found h1 {
+            font-size: 1.5em;
+            margin: 0 0 0.3em;
+        }
+
+    }
+{% endblock %}
+{% block content %}
+    <div class="page-not-found m-t-50">
+        <div>
+            <h1>Page Not Found</h1>
+            <p>Sorry, but the page you were trying to view does not exist.</p>
+        </div>
+    </div>
+    <!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}User Profile | {{ user.username }}{% endblock title %}
+
+{% block content %}
+    <div class="container m-t-50">
+        <div class="row">
+            <div class="user-profile-container">
+                <div class="user-profile-img">
+					{% if user.image_name %}
+						<img src="{{ profile_image.url(user.image_name) }}" alt="{{ user.username }} | User Profile Image">
+					{% else %}
+						<img src="{{ profile_image.url('300x250.png') }}" alt="{{ user.username }} | User Profile Image">
+					{% endif %}
+                </div>
+                <ul>
+                    <li><span>{{ user.username }}</span></li>
+                    <li><span>{{ user.user_title }}</span></li>
+                    <li><span>Following: {{ user.follow.count() }}</span></li>
+                    <li><span>Followers: {{ user.followed.count() }}</span></li>
+                    {% if g.user.is_authenticated %}
+                        {% if g.user.is_following(g.user) %}
+                            <li><a href="{{ url_for('follow_user', user_id=user.id) }}">Following</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('follow_user', user_id=user.id) }}">Follow</a></li>
+                        {% endif %}
+                    {% else %}
+                            <li><a href="{{ url_for('follow_user', user_id=user.id) }}">Follow</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <!-- Place favicon.ico in the static directory -->
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        {% block header %}
+        {% endblock %}
+        <style>
+            {% block style %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+            <div id="content">
+                <!-- Add your site or application content here -->
+                {% include 'header.html' %}
+
+                {% block content %}
+                    {% block sub_content %}
+                    {% endblock %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+
+        <script src="{{ url_for('static', filename='js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/vendor/jquery-3.2.1.min.js') }}"><\/script>')</script>
+        <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        {% block script %}
+        {% endblock %}
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>

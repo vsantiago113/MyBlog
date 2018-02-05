@@ -1,0 +1,1146 @@
+/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* ################## */
+/* GENERAL CSS */
+/* ################## */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#wrapper {
+    min-height: 100%;
+}
+
+#content {
+    overflow: auto;
+}
+
+.block-center {
+    display: block;
+    margin: 0 auto;
+}
+.divider-blue {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #0099CC;
+}
+
+.divider-red {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #E74C3C;
+}
+
+.divider-yellow {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #F4D03F;
+}
+
+.divider-green {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #28B463;
+}
+
+.divider-purple {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #A569BD;
+}
+
+.section-a {
+    width: 100%;
+    background-color: #fcfcfc;
+    color: #000;
+}
+
+.section-b {
+    width: 100%;
+    background-color: #17202A;
+    color: #fff;
+}
+
+.call-to-action {
+    background-color: #154360;
+    color: #fff;
+    min-height: 100px;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.call-to-action > p {
+    width: 500px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.call-to-action > a {
+    width: 175px;
+    display: block;
+    margin: 0 auto;
+    padding: 16px 0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.input-search {
+    position: relative;
+}
+
+.input-search input {
+    text-indent: 24px;
+}
+
+.input-search i {
+    font-size: 24px;
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    color: #ccc;
+}
+
+.input-box {
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 12px 20px;
+    box-sizing: border-box;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.m-t-30 {
+    margin-top: 30px;
+}
+
+.m-t-40 {
+    margin-top: 40px;
+}
+
+.m-t-50 {
+    margin-top: 50px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-b-30 {
+    margin-bottom: 30px;
+}
+
+.m-b-40 {
+    margin-bottom: 40px;
+}
+
+.m-b-50 {
+    margin-bottom: 50px;
+}
+
+/* ################## */
+/* END GENERAL CSS */
+/* ################## */
+
+/* ################## */
+/* HEADER */
+/* ################## */
+.nav-bar {
+    width: 100%;
+}
+
+.nav-bar-dark {
+    background-color: #212121;
+    color: #fcfcfc;
+}
+
+    .nav-bar-dark > div > ul > li > a,
+    .nav-bar-dark > div > ul > li > a:active,
+    .nav-bar-dark > div > ul > li > a:visited {
+        color: #fcfcfc;
+    }
+    .nav-bar-dark > div > ul > li > a:hover,
+    .nav-bar-dark > div > ul > li > a:hover:active {
+        color: #999;
+    }
+    .nav-bar-dark > div > .nav-bar-brand > a,
+    .nav-bar-dark > div > .nav-bar-brand > a:active,
+    .nav-bar-dark > div > .nav-bar-brand > a:visited {
+        color: #fcfcfc;
+    }
+    .nav-bar-dark > div > .nav-bar-brand > a:hover,
+    .nav-bar-dark > div > .nav-bar-brand > a:hover:active {
+        color: #999;
+    }
+    .nav-bar-dark .drop-down > ul > li > a,
+    .nav-bar-dark .drop-down > ul > li > a:active,
+    .nav-bar-dark .drop-down > ul > li > a:visited {
+        color: #fcfcfc;
+    }
+    .nav-bar-dark .drop-down > ul > li > a:hover,
+    .nav-bar-dark .drop-down > ul > li > a:hover:active {
+        color: #999;
+    }
+    .nav-bar-dark .drop-down > ul {
+        background-color: #212121;
+    }
+    .nav-bar-dark .drop-down > a,
+    .nav-bar-dark .drop-down > a:active,
+    .nav-bar-dark .drop-down > a:visited {
+        color: #fcfcfc;
+    }
+    .nav-bar-dark .drop-down > a:hover,
+    .nav-bar-dark .drop-down > a:hover:active {
+        color: #999;
+    }
+
+.nav-bar-brand {
+    float: left;
+}
+
+.nav-bar-brand > a {
+    display: block;
+    padding: 24px 8px;
+    text-decoration: none;
+}
+
+.nav-bar > div > ul {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar > div > ul > li {
+    float: left;
+}
+
+.nav-bar > div > ul > li > a {
+    display: block;
+    padding: 24px 8px;
+    text-decoration: none;
+}
+
+.drop-down {
+    display: block;
+    padding: 24px 8px;
+    position: relative;
+}
+
+.drop-down > ul {
+    display: none;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    position: absolute;
+    width: 100px;
+}
+
+.drop-down > ul > li > a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.drop-down > a,
+.drop-down > a:active,
+.drop-down > a:visited,
+.drop-down > a:hover,
+.drop-down > a:hover:active {
+    text-decoration: none;
+}
+
+.container-burger-icon {
+    display: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #fcfcfc;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+/* ################## */
+/* END HEADER */
+/* ################## */
+
+/* ################## */
+/* PARALLAX */
+/* ################## */
+.parallax {
+    background-image: url("");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* ################## */
+/* END PARALLAX */
+/* ################## */
+
+/* ################## */
+/* USER PROFILE */
+/* ################## */
+.user-profile-container {
+    width: 350px;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+/*    box-shadow: 5px 5px 8px #888888;*/
+}
+
+.user-profile-img > img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.user-profile-container > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.user-profile-container > ul > li:not(last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.user-profile-container > ul > li > span {
+    display: block;
+    padding: 8px 8px;
+}
+
+.user-profile-container > ul > li > a {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    background-color: #2C3E50;
+    color: #fcfcfc;
+    text-decoration: none;
+}
+
+.user-profile-container > ul > li > button:hover {
+    background-color: #212F3D;
+    color: #fcfcfc;
+}
+
+.img-prev {
+    width: 350px;
+    height: 235px;
+    margin: 0 auto 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 5px 1px;
+    display: block;
+}
+
+.img-prev img {
+    max-width: 100%;
+    max-height: 100%;
+}
+/* ################## */
+/* END USER PROFILE */
+/* ################## */
+
+/* ################## */
+/* BLOG ARTICLE */
+/* ################## */
+.blog-article {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.blog-article:hover {
+    box-shadow: 5px 5px 8px #333;
+    transition: 0.4s;
+}
+
+.blog-article > h3 {
+    text-align: center;
+    color: #333;
+}
+
+.blog-article > p {
+    text-align: center;
+    color: #4d4d4d;
+}
+
+.blog-article > button {
+    display: block;
+    margin: 10px auto;
+    width: 100px
+}
+
+.blog-result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.blog-result p {
+    color: #4d4d4d;
+}
+
+.blog-result a,
+.blog-result a:link,
+.blog-result a:visited,
+.blog-result a:hover,
+.blog-result a:active {
+    text-decoration: none;
+    color: #333;
+}
+
+.post-body {
+    font-size: 14px;
+}
+
+.img-prev-blog {
+    width: 350px;
+    height: 235px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 5px 1px;
+    display: block;
+}
+
+.img-prev-blog img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ################## */
+/* END BLOG ARTICLE */
+/* ################## */
+
+/* ################## */
+/* STORE PRODUCTS */
+/* ################## */
+.store-products {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #000;
+}
+
+.store-products:hover {
+    box-shadow: 5px 5px 8px #333;
+    transition: 0.4s;
+}
+
+.store-products > .price-buy > span {
+    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #27AE60;
+}
+
+.store-products > .price-buy > a {
+    float: right;
+    min-width: 100px;
+}
+/* ################## */
+/* END STORE PRODUCTS */
+/* ################## */
+
+/* ################## */
+/* PRICE TABLE */
+/* ################## */
+.price-table {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: #000;
+}
+
+.price-table:hover {
+    box-shadow: 5px 5px 8px #333;
+    transition: 0.4s;
+}
+
+.price-table > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.price-table > ul > li {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.price-table > .price-table-title {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.price-table > .price-table-price-box {
+    text-align: center;
+    padding: 25px;
+}
+
+.price-table > .price-table-price-box > .price-table-price {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.price-table > .price-table-price-box > .price-table-plan {
+    display: block;
+}
+
+.price-table > .price-table-button {
+    padding: 10px 0;
+}
+
+.price-table > .price-table-button > button {
+    padding: 10px 0;
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.price-table-green > .price-table-title {
+    background-color: #17A589;
+    color: #fff;
+}
+
+.price-table-green > .price-table-price-box {
+    background-color: #45B39D;
+    color: #fff;
+}
+
+.price-table-blue > .price-table-title {
+    background-color: #3498DB;
+    color: #fff;
+}
+
+.price-table-blue > .price-table-price-box {
+    background-color: #5DADE2;
+    color: #fff;
+}
+
+.price-table-gray > .price-table-title {
+    background-color: #34495E;
+    color: #fff;
+}
+
+.price-table-gray > .price-table-price-box {
+    background-color: #5D6D7E;
+    color: #fff;
+}
+/* ################## */
+/* END PRICE TABLE */
+/* ################## */
+
+/* ################## */
+/* SECTION ADS */
+/* ################## */
+.feature-ad-section {
+    padding: 50px;
+}
+
+.feature-ad-section > div > button {
+    display: block;
+    margin: 10px auto;
+    min-width: 100px;
+}
+/* ################## */
+/* END SECTION ADS */
+/* ################## */
+
+/* ################## */
+/* CAROUSEL */
+/* ################## */
+#quote-carousel {
+    padding: 0 10px 30px 10px;
+    margin-top: 60px;
+}
+#quote-carousel .carousel-control {
+    background: none;
+    color: #CACACA;
+    font-size: 2.3em;
+    text-shadow: none;
+    margin-top: 30px;
+}
+#quote-carousel .carousel-indicators {
+    position: relative;
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-top: 20px;
+    margin-right: -19px;
+}
+#quote-carousel .carousel-indicators li {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    opacity: 0.4;
+    overflow: hidden;
+    transition: all .4s ease-in;
+    vertical-align: middle;
+}
+#quote-carousel .carousel-indicators .active {
+    width: 128px;
+    height: 128px;
+    opacity: 1;
+    transition: all .2s;
+}
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+/* ################## */
+/* END CAROUSEL */
+/* ################## */
+
+/* ################## */
+/* FOOTER */
+/* ################## */
+.footer {
+    background-color: #212121;
+    color: #fcfcfc;
+    position: relative;
+    width: 100%;
+}
+
+.footer .copyright {
+    margin: 15px 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+.footer .copyright li {
+    list-style: none;
+    display: inline-block;
+}
+
+.footer .copyright a {
+    padding: 8px 16px;
+}
+/* ################## */
+/* END FOOTER */
+/* ################## */
+
+/* ################## */
+/* ABOUT ME */
+/* ################## */
+.about-me ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.copyright-left {
+    float: left;
+}
+
+.copyright-right {
+    float: right;
+}
+
+.about-me ul > li {
+    list-style: none;
+    float: left;
+}
+
+.about-me i {
+    padding: 10px;
+}
+
+.about-me h1 {
+    margin: 0 0 16px 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.about-me p {
+    color: #4d4d4d;
+}
+
+.about-me .fa-twitter-square {
+    color: #1DA1F2;
+}
+
+.about-me .fa-youtube-square {
+    color: #FF0000;
+}
+
+.about-me .fa-facebook-square {
+    color: #3B5998;
+}
+
+.about-me .fa-linkedin {
+    color: #007BB5;
+}
+
+.footer .fa-map-marker {
+    color: #DB4437;
+}
+/* ################## */
+/* END ABOUT ME */
+/* ################## */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    -webkit-clip-path: none;
+    clip-path: none;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+/* FOOTER Bootstrap cols */
+@media only screen and (max-width: 475px) {
+    /* Very small less than 350px */
+    #content {
+        overflow: auto;
+        padding-bottom: 380px;
+    }
+    .footer {
+        height: 380px;
+        margin-top: -380px;
+    }
+}
+
+@media only screen and (min-width: 475px) {
+    /* .col-xs-$: Phones less than 768px */
+    #content {
+        overflow: auto;
+        padding-bottom: 300px;
+    }
+    .footer {
+        height: 300px;
+        margin-top: -300px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /* .col-sm-$: Tablets 768px and Up */
+    #content {
+        overflow: auto;
+        padding-bottom: 175px;
+    }
+    .footer {
+        height: 175px;
+        margin-top: -175px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    /* .col-md-$: Desktops 992px and Up */
+    #content {
+        overflow: auto;
+        padding-bottom: 175px;
+    }
+    .footer {
+        height: 175px;
+        margin-top: -175px;
+    }
+}
+/* END FOOTER */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen and (max-width: 48em /* 768px */) {
+    .container-burger-icon {
+        display: inline-block;
+        position: fixed;
+        margin-top: 10px;
+    }
+    
+    .nav-bar-brand {
+        float: none;
+        text-align: center;
+    }
+    
+    .nav-bar > div > ul {
+        float: none;
+    }
+    
+    .nav-bar > div > ul > li {
+        float: none;
+        text-align: center;
+    }
+    
+    .nav-bar > div > ul > li > a {
+        font-weight: bold;
+    }
+
+    .burger-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.9);
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+
+    .burger-close {
+        display: none;
+    }
+    
+    .drop-down {
+        
+    }
+
+    .drop-down > ul {
+        position: static;
+        text-align: right;
+        width: 125px;
+    }
+    
+    .nav-bar-dark .drop-down > ul {
+        background-color: inherit;
+    }
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
