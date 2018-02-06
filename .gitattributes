@@ -1,3 +1,4 @@
 app/static/* linguist-vendored
 app/templates/* linguist-vendored
 app/blueprints/blog/templates/* linguist-vendored
+app/blueprints/blog/static/* linguist-vendored
