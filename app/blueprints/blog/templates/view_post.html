@@ -8,7 +8,8 @@
         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <a href="{{ url_for("user_profile", user_id=post.author.id) }}">{{ post.author.username }}</a> |
             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{ post.pub_date.strftime("%B %d, %Y") }}
         </h4>
-        <div class="post-body">{{ post.body|safe }}</div>
+        <hr>
+        <div class="post-body m-t-30">{{ post.body|safe }}</div>
         {% if post.author == g.user %}
             <hr>
             <a href="{{ url_for("blog.edit_post", post_id=post.id) }}" class="btn btn-default">Edit</a>

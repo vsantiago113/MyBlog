@@ -175,8 +175,6 @@ html, body {
 }
 
 .call-to-action > p {
-    width: 500px;
-    display: block;
     margin: 0 auto 10px;
 }
 
@@ -283,45 +281,45 @@ html, body {
     color: #fcfcfc;
 }
 
-    .nav-bar-dark > div > ul > li > a,
-    .nav-bar-dark > div > ul > li > a:active,
-    .nav-bar-dark > div > ul > li > a:visited {
-        color: #fcfcfc;
-    }
-    .nav-bar-dark > div > ul > li > a:hover,
-    .nav-bar-dark > div > ul > li > a:hover:active {
-        color: #999;
-    }
-    .nav-bar-dark > div > .nav-bar-brand > a,
-    .nav-bar-dark > div > .nav-bar-brand > a:active,
-    .nav-bar-dark > div > .nav-bar-brand > a:visited {
-        color: #fcfcfc;
-    }
-    .nav-bar-dark > div > .nav-bar-brand > a:hover,
-    .nav-bar-dark > div > .nav-bar-brand > a:hover:active {
-        color: #999;
-    }
-    .nav-bar-dark .drop-down > ul > li > a,
-    .nav-bar-dark .drop-down > ul > li > a:active,
-    .nav-bar-dark .drop-down > ul > li > a:visited {
-        color: #fcfcfc;
-    }
-    .nav-bar-dark .drop-down > ul > li > a:hover,
-    .nav-bar-dark .drop-down > ul > li > a:hover:active {
-        color: #999;
-    }
-    .nav-bar-dark .drop-down > ul {
-        background-color: #212121;
-    }
-    .nav-bar-dark .drop-down > a,
-    .nav-bar-dark .drop-down > a:active,
-    .nav-bar-dark .drop-down > a:visited {
-        color: #fcfcfc;
-    }
-    .nav-bar-dark .drop-down > a:hover,
-    .nav-bar-dark .drop-down > a:hover:active {
-        color: #999;
-    }
+.nav-bar-dark > div > ul > li > a,
+.nav-bar-dark > div > ul > li > a:active,
+.nav-bar-dark > div > ul > li > a:visited {
+    color: #fcfcfc;
+}
+.nav-bar-dark > div > ul > li > a:hover,
+.nav-bar-dark > div > ul > li > a:hover:active {
+    color: #999;
+}
+.nav-bar-dark > div > .nav-bar-brand > a,
+.nav-bar-dark > div > .nav-bar-brand > a:active,
+.nav-bar-dark > div > .nav-bar-brand > a:visited {
+    color: #fcfcfc;
+}
+.nav-bar-dark > div > .nav-bar-brand > a:hover,
+.nav-bar-dark > div > .nav-bar-brand > a:hover:active {
+    color: #999;
+}
+.nav-bar-dark .drop-down > ul > li > a,
+.nav-bar-dark .drop-down > ul > li > a:active,
+.nav-bar-dark .drop-down > ul > li > a:visited {
+    color: #fcfcfc;
+}
+.nav-bar-dark .drop-down > ul > li > a:hover,
+.nav-bar-dark .drop-down > ul > li > a:hover:active {
+    color: #999;
+}
+.nav-bar-dark .drop-down > ul {
+    background-color: #212121;
+}
+.nav-bar-dark .drop-down > a,
+.nav-bar-dark .drop-down > a:active,
+.nav-bar-dark .drop-down > a:visited {
+    color: #fcfcfc;
+}
+.nav-bar-dark .drop-down > a:hover,
+.nav-bar-dark .drop-down > a:hover:active {
+    color: #999;
+}
 
 .nav-bar-brand {
     float: left;
@@ -362,7 +360,7 @@ html, body {
     margin: 0 auto;
     padding: 0;
     position: absolute;
-    width: 100px;
+    width: 150px;
 }
 
 .drop-down > ul > li > a {
@@ -480,7 +478,7 @@ html, body {
     display: block;
 }
 
-.img-prev img {
+.img-prev > img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -552,7 +550,7 @@ html, body {
     display: block;
 }
 
-.img-prev-blog img {
+.img-prev-blog > img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -750,7 +748,7 @@ html, body {
 }
 .item blockquote p:before {
     content: "\f10d";
-    font-family: 'Fontawesome';
+    font-family: 'Open Sans', sans-serif;
     float: left;
     margin-right: 10px;
 }
@@ -768,19 +766,33 @@ html, body {
     width: 100%;
 }
 
+.footer a:link,
+.footer a:visited,
+.footer a:active {
+    text-decoration: none;
+    color: #808B96;
+}
+
+.footer a:hover {
+    color: #2980B9;
+}
+
 .footer .copyright {
-    margin: 15px 0 0 0;
+    margin: 10px 0;
+}
+
+.footer .footer-navigation ul {
+    margin: 0;
     padding: 0;
-    text-align: center;
 }
 
-.footer .copyright li {
+.footer .footer-navigation li {
     list-style: none;
-    display: inline-block;
 }
 
-.footer .copyright a {
-    padding: 8px 16px;
+.footer .footer-navigation li a {
+    display: block;
+    padding: 2px;
 }
 /* ################## */
 /* END FOOTER */
@@ -956,11 +968,11 @@ html, body {
     /* Very small less than 350px */
     #content {
         overflow: auto;
-        padding-bottom: 380px;
+        padding-bottom: 350px;
     }
     .footer {
-        height: 380px;
-        margin-top: -380px;
+        height: 350px;
+        margin-top: -350px;
     }
 }
 
@@ -968,11 +980,11 @@ html, body {
     /* .col-xs-$: Phones less than 768px */
     #content {
         overflow: auto;
-        padding-bottom: 300px;
+        padding-bottom: 290px;
     }
     .footer {
-        height: 300px;
-        margin-top: -300px;
+        height: 290px;
+        margin-top: -290px;
     }
 }
 
