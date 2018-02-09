@@ -11,7 +11,7 @@
             {% for post in posts %}
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <div class="blog-article">
-                        <img src="{{ images.url(post.image_name) }}" alt="{{ post.title }}" class="img-responsive">
+                        <img src="{{ s3_url + post.image_name }}" alt="{{ post.title }}" class="img-responsive">
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.excerpt }}</p>
                         <a href="{{ url_for('blog.view_post', post_id=post.id) }}" class="btn btn-default">Read...</a>

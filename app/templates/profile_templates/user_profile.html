@@ -8,9 +8,9 @@
             <div class="user-profile-container">
                 <div class="user-profile-img">
 					{% if user.image_name %}
-						<img src="{{ profile_image.url(user.image_name) }}" alt="{{ user.username }} | User Profile Image">
+						<img src="{{ s3_url + user.image_name }}" alt="{{ user.username }} | User Profile Image">
 					{% else %}
-						<img src="{{ profile_image.url('300x250.png') }}" alt="{{ user.username }} | User Profile Image">
+						<img src="https://s3.amazonaws.com/myblog--flask-bucket/photos/300x250.png" alt="{{ user.username }} | User Profile Image">
 					{% endif %}
                 </div>
                 <ul>

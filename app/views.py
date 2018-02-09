@@ -3,15 +3,11 @@ from flask_login import login_required, login_user, logout_user
 from functools import wraps
 from flask_bcrypt import generate_password_hash
 from werkzeug.utils import secure_filename
-from PIL import Image
-from io import BytesIO
 import os
 import uuid
 from app import app
 from app import login_manager
 from app import db
-from app import photos
-from app import images
 from app.forms import LoginForm, RegistrationForm, ChangeProfileImageForm, ChangePasswordForm, EditProfileForm
 from app.models import User, followers, initialize
 from app.blueprints.blog import blog
@@ -20,6 +16,8 @@ from app.blueprints.affiliate_store import affiliate_store
 from app.blueprints.affiliate_store.models import AffiliateProduct
 from app import csrf
 from app import admin_required
+import boto3
+from botocore.client import Config
 
 app.register_blueprint(blog)
 app.register_blueprint(affiliate_store)
@@ -40,7 +38,7 @@ def home():
     user = User.query.get(1)
     posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
     products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).limit(3)
-    return render_template('index.html', posts=posts, products=products, user=user, images=images, photos=photos)
+    return render_template('index.html', posts=posts, products=products, user=user, s3_url=app.config.get('S3_URL'))
 
 
 @app.route("/login", methods=("GET", "POST"))
@@ -97,7 +95,7 @@ def my_profile():
 @app.route("/user_profile/<path:user_id>")
 def user_profile(user_id):
     user = User.query.get(user_id)
-    return render_template("profile_templates/user_profile.html", user=user, profile_image=photos)
+    return render_template("profile_templates/user_profile.html", user=user, s3_url=app.config.get('S3_URL'))
 
 
 @app.route("/update_image", methods=["GET", "POST"])
@@ -105,23 +103,41 @@ def user_profile(user_id):
 def change_profile_image():
     form = ChangeProfileImageForm()
     if form.validate_on_submit():
-        if bool(g.user.image_name) is False:
-            pass
-        else:
-            try:
-                os.remove(photos.path(g.user.image_name))
-            except OSError:
-                pass
-        maxsize = (350, 235)
-        old_filename = secure_filename(form.image_name.data.filename)
-        file_name, file_ext = os.path.splitext(old_filename)
-        img = Image.open(BytesIO(form.image_name.data.read()))
-        unique_filename = str(uuid.uuid4()) + file_ext
-        # img = img.resize(maxsize, Image.ANTIALIAS)
-        img.save(os.path.join('_uploads/photos', unique_filename), quality=95)
-        img.close()
-        g.user.image_name = unique_filename
+
+        file_name, file_ext = os.path.splitext(form.image_name.data.filename)
+        unique_filename = os.path.join(app.config.get('UPLOADS_PHOTOS_DEST'), str(uuid.uuid4()) + file_ext)
+
+        s3 = boto3.resource('s3',
+                            aws_access_key_id=app.config.get('AWS_ACCESS_KEY_ID'),
+                            aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY'),
+                            config=Config(signature_version='s3v4')
+                            )
+        s3.Bucket(app.config.get('S3_BUCKET')).put_object(Key=unique_filename, Body=form.image_name.data)
+        g.user.image_name = os.path.join(app.config.get('S3_BUCKET'), unique_filename)
         db.session.commit()
+
+
+
+
+
+
+        # if bool(g.user.image_name) is False:
+        #     pass
+        # else:
+        #     try:
+        #         os.remove(photos.path(g.user.image_name))
+        #     except OSError:
+        #         pass
+        # maxsize = (350, 235)
+        # old_filename = secure_filename(form.image_name.data.filename)
+        # file_name, file_ext = os.path.splitext(old_filename)
+        # img = Image.open(BytesIO(form.image_name.data.read()))
+        # unique_filename = str(uuid.uuid4()) + file_ext
+        # # img = img.resize(maxsize, Image.ANTIALIAS)
+        # img.save(os.path.join('_uploads/photos', unique_filename), quality=95)
+        # img.close()
+        # g.user.image_name = unique_filename
+        # db.session.commit()
         return redirect(url_for("user_profile", user_id=g.user.id))
     return render_template("profile_templates/change_profile_image.html", form=form)
 
@@ -129,15 +145,15 @@ def change_profile_image():
 @app.route("/delete_profile_image")
 @login_required
 def delete_profile_image():
-    if bool(g.user.image_name) is False:
-        pass
-    else:
-        try:
-            os.remove(photos.path(g.user.image_name))
-        except OSError:
-            pass
-        g.user.image_name = ""
-        db.session.commit()
+    # if bool(g.user.image_name) is False:
+    #     pass
+    # else:
+    #     try:
+    #         os.remove(photos.path(g.user.image_name))
+    #     except OSError:
+    #         pass
+    #     g.user.image_name = ""
+    #     db.session.commit()
     return redirect(url_for("user_profile", user_id=g.user.id))
 
 
@@ -186,10 +202,11 @@ def follow_user(user_id):
 @login_required
 @admin_required
 def file_browser():
-    image_list = []
-    for i in os.listdir('_uploads/images'):
-        image_list.append('/_uploads/images/' + i)
-    return render_template('file_browser.html', image_list=image_list)
+    return False
+    # image_list = []
+    # for i in os.listdir('_uploads/images'):
+    #     image_list.append('/_uploads/images/' + i)
+    # return render_template('file_browser.html', image_list=image_list)
 
 
 @app.route("/file_upload", methods=["GET", "POST"])
@@ -197,14 +214,15 @@ def file_browser():
 @admin_required
 @csrf.exempt
 def file_upload():
-    if request.method == 'POST' and 'upload' in request.files:
-        file = request.files['upload']
-        file_name, file_ext = os.path.splitext(file.filename)
-        unique_filename = str(uuid.uuid4()) + file_ext
-        filename = images.save(file, name=unique_filename)
-        file_url = '/_uploads/images/{}'.format(filename)
-        return jsonify({"uploaded": 1, "fileName": filename, "url": file_url})
-    else:
-        return jsonify({"uploaded": 0, "error": {"message": "Error uploading Image."}})
+    return False
+    # if request.method == 'POST' and 'upload' in request.files:
+    #     file = request.files['upload']
+    #     file_name, file_ext = os.path.splitext(file.filename)
+    #     unique_filename = str(uuid.uuid4()) + file_ext
+    #     filename = images.save(file, name=unique_filename)
+    #     file_url = '/_uploads/images/{}'.format(filename)
+    #     return jsonify({"uploaded": 1, "fileName": filename, "url": file_url})
+    # else:
+    #     return jsonify({"uploaded": 0, "error": {"message": "Error uploading Image."}})
 
-initialize()
+#initialize()

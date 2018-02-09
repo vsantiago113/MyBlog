@@ -3,7 +3,6 @@ from .models import Post
 from flask_login import login_required
 from .forms import CreatePostForm, EditPostForm
 from app import db
-from app import images
 from app import admin_required
 import os
 import uuid
@@ -21,13 +20,13 @@ def view_posts():
         q = request.args.get('q', None)
         if q:
             results = Post.query.search(q, sort=True).paginate(page, per_page, error_out=False)
-            return render_template("view_posts.html", posts=results, post_image=images, q=q)
+            return render_template("view_posts.html", posts=results, s3_url=app.config.get('S3_URL'), q=q)
         else:
             posts = Post.query.order_by(Post.pub_date.desc()).paginate(page, per_page, error_out=False)
-            return render_template("view_posts.html", posts=posts, post_image=images, q=None)
+            return render_template("view_posts.html", posts=posts, s3_url=app.config.get('S3_URL'), q=None)
     else:
         posts = Post.query.order_by(Post.pub_date.desc()).paginate(page, per_page, error_out=False)
-        return render_template("view_posts.html", posts=posts, post_image=images, q=None)
+        return render_template("view_posts.html", posts=posts, s3_url=app.config.get('S3_URL'), q=None)
 
 
 @blog.route("/post/<path:post_id>")
