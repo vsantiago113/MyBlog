@@ -39,7 +39,11 @@
 					{{ form.excerpt(class="form-control", row="5", placeholder=form.excerpt.label.text) }}
 				</div>
                 <div class="img-prev-blog">
-                    <img src="{{ post_image.url(post.image_name) }}" id="preview_image">
+                    {% if post.image_name %}
+                        <img src="{{ bucket_url + post.image_name }}" id="preview_image">
+                    {% else %}
+                        <img src="" id="preview_image">
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {% if form.image_name.errors %}

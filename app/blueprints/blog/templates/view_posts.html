@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 m-b-30 blog-result">
                         {% if post.image_name %}
-                            <img class="img-responsive" src="{{ s3_url + post.image_name }}" alt="{{ post.title }} by {{ post.author.username }}">
+                            <img class="img-responsive" src="{{ bucket_url + post.image_name }}" alt="{{ post.title }} by {{ post.author.username }}">
                         {% else %}
                             {# No image to display #}
                         {% endif %}
