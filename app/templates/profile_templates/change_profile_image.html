@@ -7,7 +7,11 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 <div class="img-prev">
-                    <img src="#" id="preview_image">
+                    {% if g.user.image_name %}
+                        <img src="{{ bucket_url + g.user.image_name }}" id="preview_image">
+                    {% else %}
+                        <img src="{{ bucket_url + default_photo }}" id="preview_image">
+                    {% endif %}
                 </div>
                 <div class="text-center"><h3>Image size 350 x 235</h3></div>
                 <form role="form" method="POST" action="" enctype="multipart/form-data">

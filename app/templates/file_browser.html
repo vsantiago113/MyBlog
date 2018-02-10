@@ -30,10 +30,10 @@
 
         <div class="image-browser-container">
             <div class="grid">
-            {% if image_list %}
-                {% for i in image_list %}
+            {% if bucket_keys %}
+                {% for key in bucket_keys %}
                     <div class="grid-item">
-                        <img src="{{ i }}" alt="" class="img-thumbnail" onclick="returnFileUrl('{{ i }}')">
+                        <img src="{{ bucket_url + key }}" alt="" class="img-thumbnail" onclick="returnFileUrl('{{ bucket_url + key }}')">
                     </div>
                 {% endfor %}
             {% endif %}

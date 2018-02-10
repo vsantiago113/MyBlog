@@ -17,7 +17,6 @@ from app.blueprints.affiliate_store.models import AffiliateProduct
 from app import csrf
 from app import admin_required
 import boto3
-from botocore.client import Config
 
 app.register_blueprint(blog)
 app.register_blueprint(affiliate_store)
@@ -38,7 +37,9 @@ def home():
     user = User.query.get(1)
     posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
     products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).limit(3)
-    return render_template('index.html', posts=posts, products=products, user=user, s3_url=app.config.get('S3_URL'))
+    return render_template('index.html', posts=posts, products=products, user=user,
+                           bucket_url=app.config.get('BUCKET_URL'),
+                           default_photo=app.config.get('DEFAULT_PHOTO'))
 
 
 @app.route("/login", methods=("GET", "POST"))
@@ -95,7 +96,8 @@ def my_profile():
 @app.route("/user_profile/<path:user_id>")
 def user_profile(user_id):
     user = User.query.get(user_id)
-    return render_template("profile_templates/user_profile.html", user=user, s3_url=app.config.get('S3_URL'))
+    return render_template("profile_templates/user_profile.html", user=user, bucket_url=app.config.get('BUCKET_URL'),
+                           default_photo=app.config.get('DEFAULT_PHOTO'))
 
 
 @app.route("/update_image", methods=["GET", "POST"])
@@ -104,56 +106,59 @@ def change_profile_image():
     form = ChangeProfileImageForm()
     if form.validate_on_submit():
 
-        file_name, file_ext = os.path.splitext(form.image_name.data.filename)
-        unique_filename = os.path.join(app.config.get('UPLOADS_PHOTOS_DEST'), str(uuid.uuid4()) + file_ext)
-
         s3 = boto3.resource('s3',
                             aws_access_key_id=app.config.get('AWS_ACCESS_KEY_ID'),
-                            aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY'),
-                            config=Config(signature_version='s3v4')
+                            aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY')
                             )
-        s3.Bucket(app.config.get('S3_BUCKET')).put_object(Key=unique_filename, Body=form.image_name.data)
-        g.user.image_name = os.path.join(app.config.get('S3_BUCKET'), unique_filename)
+
+        if g.user.image_name:
+            s3.Bucket(app.config.get('S3_BUCKET')).delete_objects(
+                Delete={
+                    'Objects': [
+                        {'Key': g.user.image_name},
+                    ],
+                    'Quiet': True
+                }
+            )
+        else:
+            pass
+
+        file_name, file_ext = os.path.splitext(form.image_name.data.filename)
+        unique_filename = app.config.get('BUCKET_PHOTOS') + str(uuid.uuid4()) + file_ext
+
+        s3.Bucket(app.config.get('S3_BUCKET')).put_object(Key=unique_filename,
+                                                          Body=form.image_name.data,
+                                                          ACL='public-read')
+
+        g.user.image_name = unique_filename
         db.session.commit()
 
-
-
-
-
-
-        # if bool(g.user.image_name) is False:
-        #     pass
-        # else:
-        #     try:
-        #         os.remove(photos.path(g.user.image_name))
-        #     except OSError:
-        #         pass
-        # maxsize = (350, 235)
-        # old_filename = secure_filename(form.image_name.data.filename)
-        # file_name, file_ext = os.path.splitext(old_filename)
-        # img = Image.open(BytesIO(form.image_name.data.read()))
-        # unique_filename = str(uuid.uuid4()) + file_ext
-        # # img = img.resize(maxsize, Image.ANTIALIAS)
-        # img.save(os.path.join('_uploads/photos', unique_filename), quality=95)
-        # img.close()
-        # g.user.image_name = unique_filename
-        # db.session.commit()
         return redirect(url_for("user_profile", user_id=g.user.id))
-    return render_template("profile_templates/change_profile_image.html", form=form)
+    return render_template("profile_templates/change_profile_image.html", form=form,
+                           bucket_url=app.config.get('BUCKET_URL'),
+                           default_photo=app.config.get('DEFAULT_PHOTO'))
 
 
 @app.route("/delete_profile_image")
 @login_required
 def delete_profile_image():
-    # if bool(g.user.image_name) is False:
-    #     pass
-    # else:
-    #     try:
-    #         os.remove(photos.path(g.user.image_name))
-    #     except OSError:
-    #         pass
-    #     g.user.image_name = ""
-    #     db.session.commit()
+    if g.user.image_name:
+        s3 = boto3.resource('s3',
+                            aws_access_key_id=app.config.get('AWS_ACCESS_KEY_ID'),
+                            aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY')
+                            )
+        s3.Bucket(app.config.get('S3_BUCKET')).delete_objects(
+            Delete={
+                'Objects': [
+                    {'Key': g.user.image_name},
+                ],
+                'Quiet': True
+            }
+        )
+        g.user.image_name = ''
+        db.session.commit()
+    else:
+        pass
     return redirect(url_for("user_profile", user_id=g.user.id))
 
 
@@ -202,11 +207,18 @@ def follow_user(user_id):
 @login_required
 @admin_required
 def file_browser():
-    return False
-    # image_list = []
-    # for i in os.listdir('_uploads/images'):
-    #     image_list.append('/_uploads/images/' + i)
-    # return render_template('file_browser.html', image_list=image_list)
+    s3 = boto3.resource('s3',
+                        aws_access_key_id=app.config.get('AWS_ACCESS_KEY_ID'),
+                        aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY')
+                        )
+    bucket = s3.Bucket(app.config.get('S3_BUCKET'))
+    file_list = []
+    for key in bucket.objects.all():
+        if key.key.endswith('/'):
+            pass
+        else:
+            file_list.append(key.key)
+    return render_template('file_browser.html', bucket_url=app.config.get('BUCKET_URL'), bucket_keys=file_list)
 
 
 @app.route("/file_upload", methods=["GET", "POST"])
@@ -214,15 +226,23 @@ def file_browser():
 @admin_required
 @csrf.exempt
 def file_upload():
-    return False
-    # if request.method == 'POST' and 'upload' in request.files:
-    #     file = request.files['upload']
-    #     file_name, file_ext = os.path.splitext(file.filename)
-    #     unique_filename = str(uuid.uuid4()) + file_ext
-    #     filename = images.save(file, name=unique_filename)
-    #     file_url = '/_uploads/images/{}'.format(filename)
-    #     return jsonify({"uploaded": 1, "fileName": filename, "url": file_url})
-    # else:
-    #     return jsonify({"uploaded": 0, "error": {"message": "Error uploading Image."}})
+    if request.method == 'POST' and 'upload' in request.files:
+        s3 = boto3.resource('s3',
+                            aws_access_key_id=app.config.get('AWS_ACCESS_KEY_ID'),
+                            aws_secret_access_key=app.config.get('AWS_SECRET_ACCESS_KEY')
+                            )
+
+        file = request.files['upload']
+        file_name, file_ext = os.path.splitext(file.filename)
+        unique_filename = app.config.get('BUCKET_FILES') + str(uuid.uuid4()) + file_ext
+        file_url = app.config.get('BUCKET_URL') + unique_filename
+
+        s3.Bucket(app.config.get('S3_BUCKET')).put_object(Key=unique_filename,
+                                                          Body=file,
+                                                          ACL='public-read')
+
+        return jsonify({"uploaded": 1, "fileName": unique_filename, "url": file_url})
+    else:
+        return jsonify({"uploaded": 0, "error": {"message": "Error uploading Image."}})
 
 #initialize()
