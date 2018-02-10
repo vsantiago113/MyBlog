@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, abort, request
 from .models import AffiliateProduct
 from flask_login import login_required
 from .forms import AddProductForm, EditProductForm
@@ -15,21 +15,20 @@ affiliate_store = Blueprint("affiliate_store", __name__, template_folder="templa
 
 @affiliate_store.route("/", methods=("GET", "POST"))
 def view_store():
-    return 'Needs to be completed, Come back later!'
-    # page = 1
-    # per_page = 10
-    # if request.method == 'GET':
-    #     page = request.args.get('page', 1, type=int)
-    #     q = request.args.get('q', None)
-    #     if q:
-    #         results = AffiliateProduct.query.search(q, sort=True).paginate(page, per_page, error_out=False)
-    #         return render_template("view_store.html", products=results, s3_url=app.config.get('S3_URL'), q=q)
-    #     else:
-    #         products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).paginate(page, per_page, error_out=False)
-    #         return render_template("view_store.html", products=products, s3_url=app.config.get('S3_URL'), q=None)
-    # else:
-    #     products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).paginate(page, per_page, error_out=False)
-    #     return render_template("view_store.html", products=products, s3_url=app.config.get('S3_URL'), q=None)
+    page = 1
+    per_page = 10
+    if request.method == 'GET':
+        page = request.args.get('page', 1, type=int)
+        q = request.args.get('q', None)
+        if q:
+            results = AffiliateProduct.query.search(q, sort=True).paginate(page, per_page, error_out=False)
+            return render_template("view_store.html", products=results, bucket_url=app.config.get('BUCKET_URL'), q=q)
+        else:
+            products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).paginate(page, per_page, error_out=False)
+            return render_template("view_store.html", products=products, bucket_url=app.config.get('BUCKET_URL'), q=None)
+    else:
+        products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).paginate(page, per_page, error_out=False)
+        return render_template("view_store.html", products=products, bucket_url=app.config.get('BUCKET_URL'), q=None)
 
 
 @affiliate_store.route("/add_product", methods=("GET", "POST"))
@@ -97,10 +96,9 @@ def edit_product(product_id):
             else:
                 pass
             db.session.commit()
-            flash("Updated successfully!", "success")
             return redirect(url_for("affiliate_store.view_store"))
         else:
             return render_template("edit_product.html", form=form, product=product,
                                    bucket_url=app.config.get('BUCKET_URL'))
     else:
-        return redirect(url_for("affiliate_store.view_store"))
+        abort(404)

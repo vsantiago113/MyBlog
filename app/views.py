@@ -36,7 +36,7 @@ def load_user(user_id):
 def home():
     user = User.query.get(1)
     posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
-    products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).limit(3)
+    products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).limit(4)
     return render_template('index.html', posts=posts, products=products, user=user,
                            bucket_url=app.config.get('BUCKET_URL'),
                            default_photo=app.config.get('DEFAULT_PHOTO'))

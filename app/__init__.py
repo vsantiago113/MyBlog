@@ -3,7 +3,6 @@ from functools import wraps
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
-from flask_uploads import IMAGES, patch_request_class
 import os
 
 app = Flask(__name__)
@@ -34,8 +33,6 @@ login_manager.login_view = "login"
 login_manager.session_protection = "strong"
 
 db = SQLAlchemy(app)
-
-patch_request_class(app)
 
 
 def admin_required(f):

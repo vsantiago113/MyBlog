@@ -1,8 +1,8 @@
 from app import db
 from datetime import datetime
 from sqlalchemy.ext.declarative import declared_attr
-from flask_sqlalchemy import SQLAlchemy, BaseQuery
-from sqlalchemy_searchable import make_searchable, search, SearchQueryMixin
+from flask_sqlalchemy import BaseQuery
+from sqlalchemy_searchable import make_searchable, SearchQueryMixin
 from sqlalchemy_utils.types import TSVectorType
 
 make_searchable()

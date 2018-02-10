@@ -9,18 +9,18 @@
     <div class="row">
         {% if products %}
             {% for item in products %}
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                        <div class="store-products clearfix">
-                            <img src="{{ bucket_url + item.image_name }}" alt="" class="img-responsive">
-                            <h3>{{ item.title }}</h3>
-                            <p>{{ item.description }}</p>
-                            <hr>
-                            <div class="price-buy">
-                                <span>${{ item.discount_price }}</span>
-                                <a href="{{ item.product_url }}" class="btn btn-warning" target="_blank">Buy now!</a>
-                            </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="store-products clearfix">
+                        <img src="{{ bucket_url + item.image_name }}" alt="" class="img-responsive">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                        <hr>
+                        <div class="price-buy">
+                            <span>${{ item.discount_price }}</span>
+                            <a href="{{ item.product_url }}" class="btn btn-warning" target="_blank">Buy now!</a>
                         </div>
                     </div>
+                </div>
             {% endfor %}
         {% endif %}
     </div>

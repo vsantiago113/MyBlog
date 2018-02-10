@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, g, abort
+from flask import Blueprint, render_template, redirect, url_for, request, jsonify, g, abort
 from .models import Post
 from flask_login import login_required
 from .forms import CreatePostForm, EditPostForm
@@ -100,7 +100,6 @@ def edit_post(post_id):
                 else:
                     pass
                 db.session.commit()
-                flash("Updated successfully!", "success")
                 return redirect(url_for("blog.view_post", post_id=post.id))
             else:
                 return redirect(url_for("blog.view_posts"))
