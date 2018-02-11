@@ -16,6 +16,7 @@ from app.blueprints.affiliate_store import affiliate_store
 from app.blueprints.affiliate_store.models import AffiliateProduct
 from app import csrf
 from app import admin_required
+from app import recaptcha
 import boto3
 
 app.register_blueprint(blog)

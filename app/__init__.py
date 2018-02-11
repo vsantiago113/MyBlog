@@ -3,6 +3,7 @@ from functools import wraps
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
+from flask_recaptcha import ReCaptcha
 import os
 
 app = Flask(__name__)
@@ -23,9 +24,14 @@ app.config['S3_BUCKET'] = os.environ.get('S3_BUCKET')
 app.config['S3_URL'] = os.environ.get('S3_URL')
 app.config['BUCKET_URL'] = os.environ.get('BUCKET_URL')
 app.config['DEFAULT_PHOTO'] = os.environ.get('DEFAULT_PHOTO')
+app.config['RECAPTCHA_ENABLED'] = bool(os.environ.get('RECAPTCHA_ENABLED'))
+app.config['RECAPTCHA_SITE_KEY'] = os.environ.get('RECAPTCHA_SITE_KEY')
+app.config['RECAPTCHA_SECRET_KEY'] = os.environ.get('RECAPTCHA_SECRET_KEY')
+app.config['RECAPTCHA_THEME'] = os.environ.get('RECAPTCHA_THEME')
 
 csrf = CSRFProtect(app)
 csrf.init_app(app)
+recaptcha = ReCaptcha(app=app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
