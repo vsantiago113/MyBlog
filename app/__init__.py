@@ -28,6 +28,7 @@ app.config['RECAPTCHA_ENABLED'] = bool(os.environ.get('RECAPTCHA_ENABLED'))
 app.config['RECAPTCHA_SITE_KEY'] = os.environ.get('RECAPTCHA_SITE_KEY')
 app.config['RECAPTCHA_SECRET_KEY'] = os.environ.get('RECAPTCHA_SECRET_KEY')
 app.config['RECAPTCHA_THEME'] = os.environ.get('RECAPTCHA_THEME')
+app.config['SSL'] = os.environ.get('SSL')
 
 csrf = CSRFProtect(app)
 csrf.init_app(app)
