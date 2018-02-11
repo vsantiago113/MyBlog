@@ -41,13 +41,3 @@ class User(UserMixin, BlogUser, db.Model):
 
     def is_following(self, user):
         return self.follow.filter(followers.c.following_id == user.id).count() > 0
-
-
-def initialize():
-    db.create_all()
-    if User.query.get(1):
-        pass
-    else:
-        admin = User("admin", "admin@example.com", "password", True)
-        db.session.add(admin)
-        db.session.commit()

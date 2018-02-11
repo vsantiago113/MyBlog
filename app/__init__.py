@@ -1,4 +1,4 @@
-from flask import Flask, g, redirect, url_for
+from flask import Flask, g, redirect, url_for, request
 from functools import wraps
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
@@ -53,5 +53,19 @@ def admin_required(f):
 @app.before_request
 def before_request():
     g.user = current_user
+
+
+def ssl_required(fn):
+    @wraps(fn)
+    def decorated_view(*args, **kwargs):
+        if not app.config.get("SSL"):
+            if request.is_secure:
+                return fn(*args, **kwargs)
+            else:
+                return redirect(request.url.replace("http://", "https://"))
+
+        return fn(*args, **kwargs)
+
+    return decorated_view
 
 from app import views
