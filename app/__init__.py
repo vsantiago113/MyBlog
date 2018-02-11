@@ -58,7 +58,7 @@ def before_request():
 def ssl_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
-        if not app.config.get("SSL"):
+        if app.config.get("SSL"):
             if request.is_secure:
                 return fn(*args, **kwargs)
             else:
