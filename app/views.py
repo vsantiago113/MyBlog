@@ -79,10 +79,14 @@ def privacy_policy():
 def registration():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(form.username.data, form.email.data, form.password.data, False)
-        db.session.add(user)
-        db.session.commit()
-        flash("your account has been created successfully you can now log in.", "success")
+        if recaptcha.verify():
+            user = User(form.username.data, form.email.data, form.password.data, False)
+            db.session.add(user)
+            db.session.commit()
+            flash("your account has been created successfully you can now log in.", "success")
+        else:
+            flash('The Captcha is invalid, please try again!', 'warning')
+            return render_template("registration.html", form=form)
         return redirect(url_for("login"))
     else:
         return render_template("registration.html", form=form)
