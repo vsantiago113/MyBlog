@@ -36,6 +36,9 @@
                     {% block sub_content %}
                     {% endblock %}
                 {% endblock %}
+
+                {% block in_article_ads %}
+                {% endblock %}
             </div>
         </div>
 
@@ -49,5 +52,9 @@
         {% block script %}
         {% endblock %}
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </body>
 </html>
