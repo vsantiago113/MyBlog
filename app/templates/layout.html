@@ -21,6 +21,13 @@
             {% block style %}
             {% endblock %}
         </style>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5182000318668854",
+            enable_page_level_ads: true
+          });
+        </script>
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -52,9 +59,5 @@
         {% block script %}
         {% endblock %}
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
     </body>
 </html>
