@@ -16,20 +16,29 @@
             <button type="button" id="btn_delete" class="btn btn-danger">Delete</button>
         {% endif %}
     </div>
+
+    {#  Google Ads  #}
+    <div class="container m-t-10">
+        <hr>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-5182000318668854"
+             data-ad-slot="2817140772"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    {#  End Google Ads  #}
 {% endblock %}
 
-{% block in_article_ads %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle"
-         style="display:block; text-align:center;"
-         data-ad-layout="in-article"
-         data-ad-format="fluid"
-         data-ad-client="ca-pub-5182000318668854"
-         data-ad-slot="2817140772"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-{% endblock %}
+<div class="container m-t-10 m-b-20">
+    <hr>
+    {% block in_article_ads %}
+    {% endblock %}
+</div>
 
 {% block script %}
     <script>

@@ -2,7 +2,9 @@ from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
 from datetime import datetime
 from app import db
-from app.blueprints.blog.models import BlogUser
+from app.blueprints.blog.models import BlogUser, CommentUser
+from sqlalchemy_searchable import make_searchable, SearchQueryMixin
+from sqlalchemy_utils.types import TSVectorType
 
 followers = db.Table("followers",
                      db.Column("following_id", db.Integer, db.ForeignKey("user.id")),
@@ -10,7 +12,7 @@ followers = db.Table("followers",
                      )
 
 
-class User(UserMixin, BlogUser, db.Model):
+class User(UserMixin, BlogUser, CommentUser, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, nullable=False)
     password = db.Column(db.Binary(128), nullable=False)

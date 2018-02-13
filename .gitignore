@@ -104,3 +104,6 @@ ENV/
 app/config.json
 .idea/
 app/__pycache__/
+
+# Flask-Migrate
+app/migrations/migrations/
