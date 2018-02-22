@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from wtforms import StringField, SubmitField, TextAreaField, HiddenField
 from wtforms.validators import DataRequired, Length
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_uploads import IMAGES
@@ -21,3 +21,14 @@ class EditPostForm(FlaskForm):
     excerpt = TextAreaField('Excerpt')
     image_name = FileField('Feature Image', validators=[FileAllowed(IMAGES, 'File is not a valid image!')])
     submit = SubmitField('Submit')
+
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Comment')
+
+
+class ReplyForm(FlaskForm):
+    reply = TextAreaField('Reply', validators=[DataRequired()])
+    comment_id = HiddenField("Comment ID")
+    submit = SubmitField('Reply')

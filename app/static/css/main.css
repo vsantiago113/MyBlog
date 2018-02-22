@@ -856,22 +856,48 @@ html, body {
 /* END ABOUT ME */
 /* ################## */
 
+/* ################## */
+/* COMMENTS */
+/* ################## */
+.comments {
 
+}
 
+.comment {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
 
+.comment ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
+.comment ul > li {
 
+}
 
+.comment img {
+    max-width: 75px;
+    max-height: 75px;
+    border-radius: 16px 16px 16px 0;
+}
 
+.comment-liked {
+    color: #C0392B;
+}
 
+.comment i:hover {
+    cursor: pointer;
+}
 
-
-
-
-
-
-
-
+.reply {
+    margin-left: 50px;
+}
+/* ################## */
+/* END COMMENTS */
+/* ################## */
 
 /* ==========================================================================
    Helper classes

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, jsonify, g, abort
-from .models import Post
+from .models import Post, Comment, Reply
 from flask_login import login_required
-from .forms import CreatePostForm, EditPostForm
+from .forms import CreatePostForm, EditPostForm, CommentForm, ReplyForm
 from app import app
 from app import db
 from app import admin_required
@@ -33,8 +33,11 @@ def view_posts():
 @blog.route("/post/<path:post_id>")
 def view_post(post_id):
     post = Post.query.get(post_id)
+    comment_form = CommentForm()
+    reply_form = ReplyForm()
     if post:
-        return render_template("view_post.html", post=post)
+        return render_template("view_post.html", post=post, bucket_url=app.config.get('BUCKET_URL'),
+                               comment_form=comment_form, reply_form=reply_form)
     else:
         abort(404)
 
@@ -139,3 +142,40 @@ def delete_post():
             return jsonify(result="false")
     else:
         return jsonify(result="false")
+
+
+@blog.route('/leave_comment/<path:post_id>', methods=('GET', 'POST'))
+@login_required
+def leave_comment(post_id):
+    post = Post.query.get(post_id)
+    if post:
+        form = CommentForm()
+        if form.validate_on_submit():
+            if form.comment.data:
+                comment = Comment(g.user, form.comment.data, post)
+                db.session.add(comment)
+                db.session.commit()
+            else:
+                pass
+            return redirect(url_for("blog.view_post", post_id=post.id))
+        else:
+            return redirect(url_for("blog.view_post", post_id=post.id))
+    else:
+        abort(404)
+
+
+@blog.route('/leave_reply/<path:post_id>', methods=('POST',))
+@login_required
+def leave_reply(post_id):
+    form = ReplyForm()
+    if form.validate_on_submit():
+        comment = Comment.query.get(int(form.comment_id.data))
+        if comment:
+            reply = Reply(g.user, form.reply.data, comment)
+            db.session.add(reply)
+            db.session.commit()
+            return redirect(url_for("blog.view_post", post_id=post_id))
+        else:
+            abort(404)
+    else:
+        return redirect(url_for("blog.view_post", post_id=post_id))

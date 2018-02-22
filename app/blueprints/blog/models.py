@@ -29,6 +29,14 @@ class CommentUser(db.Model):
         return db.relationship('Comment', backref='author', lazy='dynamic')
 
 
+class ReplyUser(db.Model):
+    __abstract__ = True
+
+    @declared_attr
+    def replies(cls):
+        return db.relationship('Reply', backref='author', lazy='dynamic')
+
+
 class Post(db.Model):
     query_class = ArticleQuery
     id = db.Column(db.Integer, primary_key=True)
@@ -63,6 +71,8 @@ class Comment(db.Model):
     comment_datetime = db.Column(db.DateTime, default=datetime.now)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
+    replies = db.relationship('Reply', backref='comment', cascade='all, delete-orphan', lazy='dynamic')
+
     def __init__(self, author, content, post):
         self.author = author
         self.content = content
@@ -70,6 +80,22 @@ class Comment(db.Model):
 
     def __repr__(self):
         return '<Comment ID %r>' % self.id
+
+
+class Reply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    reply_content = db.Column(db.Text, nullable=False)
+    reply_datetime = db.Column(db.DateTime, default=datetime.now)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+
+    def __init__(self, author, content, comment):
+        self.author = author
+        self.reply_content = content
+        self.comment = comment
+
+    def __repr__(self):
+        return '<Reply ID %r>' % self.id
 
 
 # very important! This part is for the full text search to work.

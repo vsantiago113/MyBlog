@@ -7,12 +7,12 @@ make_searchable()
 
 
 # Require for Full Text Search using Flask_SQLAlchemy
-class ArticleQuery(BaseQuery, SearchQueryMixin):
+class ProductQuery(BaseQuery, SearchQueryMixin):
     pass
 
 
 class AffiliateProduct(db.Model):
-    query_class = ArticleQuery
+    query_class = ProductQuery
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Unicode(256), nullable=False)
     description = db.Column(db.Text, default='')

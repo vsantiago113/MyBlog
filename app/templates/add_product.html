@@ -21,8 +21,11 @@
                             <div>{{ error }}</div>
                         {% endfor %}
                     {% endif %}
-					{{ form.description(class="form-control", id="word_count", row="5", placeholder=form.description.label.text) }}
-                    <p>Total word count: <span id="display_count">0</span> words. Words left: <span id="word_left">50</span></p>
+					{{ form.description(class="form-control", id="word_count", row="5",
+					placeholder=form.description.label.text) }}
+                    <p>Total word count: <span id="display_count">0</span> words. Words left:
+                        <span id="word_left">50</span>
+                    </p>
 				</div>
                 <div class="form-group">
                     {% if form.discount_price.errors %}

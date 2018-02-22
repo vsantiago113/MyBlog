@@ -2,7 +2,6 @@ from flask import Flask
 from sqlalchemy.ext.declarative import declared_attr
 from flask_login import UserMixin
 from datetime import datetime
-from flask_bcrypt import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import BaseQuery
 from sqlalchemy_searchable import make_searchable, SearchQueryMixin
@@ -49,6 +48,14 @@ class CommentUser(db.Model):
         return db.relationship('Comment', backref='author', lazy='dynamic')
 
 
+class ReplyUser(db.Model):
+    __abstract__ = True
+
+    @declared_attr
+    def replies(cls):
+        return db.relationship('Reply', backref='author', lazy='dynamic')
+
+
 followers = db.Table("followers",
                      db.Column("following_id", db.Integer, db.ForeignKey("user.id")),
                      db.Column("followed_id", db.Integer, db.ForeignKey("user.id"))
@@ -75,18 +82,6 @@ class User(UserMixin, BlogUser, CommentUser, db.Model):
                                backref=db.backref("follow", lazy="dynamic"),
                                lazy="dynamic")
 
-    def __init__(self, username, email, password, is_admin=False):
-        self.username = username
-        self.email = email
-        self.password = generate_password_hash(password)
-        self.is_admin = is_admin
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-    def is_following(self, user):
-        return self.follow.filter(followers.c.following_id == user.id).count() > 0
-
 
 class Post(db.Model):
     query_class = ArticleQuery
@@ -101,19 +96,6 @@ class Post(db.Model):
 
     comments = db.relationship('Comment', backref='post', cascade='all, delete-orphan', lazy='dynamic')
 
-    def __init__(self, title, body, excerpt, pub_date, image_name, author):
-        self.title = title
-        self.body = body
-        self.excerpt = ' '.join(excerpt.split()[:50]) + '[...]'
-        if isinstance(pub_date, str):
-            pub_date = datetime.strptime(pub_date, "%Y/%m/%d")
-        self.pub_date = pub_date
-        self.image_name = image_name
-        self.author = author
-
-    def __repr__(self):
-        return '<Post %r>' % self.title
-
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -122,13 +104,15 @@ class Comment(db.Model):
     comment_datetime = db.Column(db.DateTime, default=datetime.now)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
-    def __init__(self, author, content, post):
-        self.author = author
-        self.content = content
-        self.post = post
+    replies = db.relationship('Reply', backref='comment', cascade='all, delete-orphan', lazy='dynamic')
 
-    def __repr__(self):
-        return '<Comment ID %r>' % self.id
+
+class Reply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    reply_content = db.Column(db.Text, nullable=False)
+    reply_datetime = db.Column(db.DateTime, default=datetime.now)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
 
 
 class AffiliateProduct(db.Model):
@@ -141,17 +125,6 @@ class AffiliateProduct(db.Model):
     product_url = db.Column(db.String(256), nullable=False)
     image_name = db.Column(db.String(128), default='')
     search_vector = db.Column(TSVectorType('title', 'description'))
-
-    def __init__(self, title, description, discount_price, regular_price, product_url, image_name):
-        self.title = title
-        self.description = ' '.join(description.split()[:50])
-        self.discount_price = discount_price
-        self.regular_price = regular_price
-        self.product_url = product_url
-        self.image_name = image_name
-
-    def __repr__(self):
-        return '<Product %r>' % self.title
 
 
 # very important! This part is for the full text search to work.

@@ -23,15 +23,15 @@ app.register_blueprint(blog)
 app.register_blueprint(affiliate_store)
 
 
-# @app.before_first_request
-# def before_first_request(f):
-#     db.create_all()
-#     if User.query.get(1):
-#         pass
-#     else:
-#         admin = User("admin", "admin@example.com", "password", True)
-#         db.session.add(admin)
-#         db.session.commit()
+@app.before_first_request
+def before_first_request():
+    db.create_all()
+    if User.query.get(1):
+        pass
+    else:
+        admin = User("admin", "admin@example.com", "password", True)
+        db.session.add(admin)
+        db.session.commit()
 
 
 @app.errorhandler(404)
@@ -55,7 +55,7 @@ def home():
 
 
 @app.route("/login", methods=("GET", "POST"))
-@ssl_required
+#@ssl_required
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -88,7 +88,7 @@ def privacy_policy():
 
 
 @app.route("/registration", methods=("GET", "POST"))
-@ssl_required
+#@ssl_required
 def registration():
     form = RegistrationForm()
     if form.validate_on_submit():
