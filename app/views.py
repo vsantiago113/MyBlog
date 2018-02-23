@@ -262,5 +262,3 @@ def file_upload():
         return jsonify({"uploaded": 1, "fileName": unique_filename, "url": file_url})
     else:
         return jsonify({"uploaded": 0, "error": {"message": "Error uploading Image."}})
-
-#initialize()

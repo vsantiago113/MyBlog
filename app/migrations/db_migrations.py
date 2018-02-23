@@ -93,26 +93,24 @@ class Post(db.Model):
     image_name = db.Column(db.String(128), default="")
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     search_vector = db.Column(TSVectorType('title', 'body'))
-
     comments = db.relationship('Comment', backref='post', cascade='all, delete-orphan', lazy='dynamic')
 
 
 class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    comment_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     content = db.Column(db.Text, nullable=False)
     comment_datetime = db.Column(db.DateTime, default=datetime.now)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-
     replies = db.relationship('Reply', backref='comment', cascade='all, delete-orphan', lazy='dynamic')
 
 
 class Reply(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    reply_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     reply_content = db.Column(db.Text, nullable=False)
     reply_datetime = db.Column(db.DateTime, default=datetime.now)
-    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.comment_id'))
 
 
 class AffiliateProduct(db.Model):

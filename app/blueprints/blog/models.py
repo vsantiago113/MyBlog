@@ -65,7 +65,7 @@ class Post(db.Model):
 
 
 class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    comment_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     content = db.Column(db.Text, nullable=False)
     comment_datetime = db.Column(db.DateTime, default=datetime.now)
@@ -83,11 +83,11 @@ class Comment(db.Model):
 
 
 class Reply(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    reply_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     reply_content = db.Column(db.Text, nullable=False)
     reply_datetime = db.Column(db.DateTime, default=datetime.now)
-    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.comment_id'))
 
     def __init__(self, author, content, comment):
         self.author = author

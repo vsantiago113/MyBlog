@@ -57,14 +57,14 @@
                 <div class="comments-header">
                     <ul class="clearfix">
                         <li class="float-left"><img src="{{ bucket_url + comment.author.image_name }}" alt="" class="img-responsive"></li>
-                        <li class="float-right">1 days ago</li>
+                        <li class="float-right">{% if (todays_date - comment.comment_datetime).days == 0 %}Today{% else %} {{ (todays_date - comment.comment_datetime).days }} days ago{% endif %}</li>
                     </ul>
                 </div>
                 <div class="comments-body">
                     <p>{{ comment.content }}</p>
                 </div>
                 <div class="comments-footer">
-                    <i class="fas fa-comment" data-toggle="modal" data-target="#replyModal" data-comment_id="{{ comment.id }}"> Reply <span class="badge">{{ comment.replies.count() }}</span></i><span> | </span><i class="fas fa-heart" id="comment-like"> Likes <span class="badge">2</span></i>
+                    <i class="fas fa-comment" data-toggle="modal" data-target="#replyModal" data-comment_id="{{ comment.comment_id }}">Reply <span class="badge">{{ comment.replies.count() }}</span></i>
                 </div>
             </div>
             {% if comment.replies %}
@@ -73,14 +73,14 @@
                         <div class="comments-header">
                             <ul class="clearfix">
                                 <li class="float-left"><img src="{{ bucket_url + reply.author.image_name }}" alt="" class="img-responsive"></li>
-                                <li class="float-right">4 days ago</li>
+                                <li class="float-right">{% if (todays_date - reply.reply_datetime).days == 0 %}Today{% else %} {{ (todays_date - reply.reply_datetime).days }} days ago{% endif %}</li>
                             </ul>
                         </div>
                         <div class="comments-body">
                             <p>{{ reply.reply_content }}</p>
                         </div>
                         <div class="comments-footer">
-                            <i class="fas fa-comment" data-toggle="modal" data-target="#replyModal" data-comment_id="{{ comment.id }}"> Reply</i><span> | </span><i class="fas fa-heart comment-liked" id="comment-like"> Likes <span class="badge">2</span></i>
+                            <i class="fas fa-comment" data-toggle="modal" data-target="#replyModal" data-comment_id="{{ comment.comment_id }}">Reply</i>
                         </div>
                     </div>
                 {% endfor %}

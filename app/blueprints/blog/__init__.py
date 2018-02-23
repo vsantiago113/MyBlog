@@ -8,6 +8,7 @@ from app import admin_required
 import os
 import uuid
 import boto3
+from datetime import datetime
 
 blog = Blueprint("blog", __name__, template_folder="templates", static_folder="static", url_prefix="/blog")
 
@@ -37,7 +38,7 @@ def view_post(post_id):
     reply_form = ReplyForm()
     if post:
         return render_template("view_post.html", post=post, bucket_url=app.config.get('BUCKET_URL'),
-                               comment_form=comment_form, reply_form=reply_form)
+                               comment_form=comment_form, reply_form=reply_form, todays_date=datetime.now())
     else:
         abort(404)
 
@@ -179,3 +180,40 @@ def leave_reply(post_id):
             abort(404)
     else:
         return redirect(url_for("blog.view_post", post_id=post_id))
+
+
+@blog.route('/likes', methods=('POST',))
+@login_required
+def likes():
+    data = request.get_json()
+    post_id = data.get('post_id', None)
+    comment_id = data.get('comment_id', None)
+    reply_id = data.get('reply_id', None)
+    if not comment_id and not reply_id:
+        abort(404)
+    else:
+        pass
+    if comment_id:
+        comment = Comment.query.get(int(comment_id))
+    else:
+        comment = None
+    if reply_id:
+        reply = Reply.query.get(int(reply_id))
+    else:
+        reply = None
+
+    if post_id:
+        if comment:
+            _comment = CommentLike(g.user, comment)
+            db.session.add(_comment)
+            #db.session.commit()
+            return redirect(url_for("blog.view_post", post_id=post_id))
+        elif reply:
+            _reply = ReplyLike(g.user, reply)
+            db.session.add(_reply)
+            #db.session.commit()
+            return redirect(url_for("blog.view_post", post_id=post_id))
+        else:
+            abort(404)
+    else:
+        abort(404)
