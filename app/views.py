@@ -55,7 +55,7 @@ def home():
 
 
 @app.route("/login", methods=("GET", "POST"))
-#@ssl_required
+@ssl_required
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -88,7 +88,7 @@ def privacy_policy():
 
 
 @app.route("/registration", methods=("GET", "POST"))
-#@ssl_required
+@ssl_required
 def registration():
     form = RegistrationForm()
     if form.validate_on_submit():

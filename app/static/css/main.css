@@ -99,11 +99,18 @@ textarea {
 /* ################## */
 /* GENERAL CSS */
 /* ################## */
-html, body {
+html, body{
+    height: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
+    background-color: #FCFCFC;
+    color: #212121;
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
+}
+
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
 }
 
 #wrapper {
@@ -263,6 +270,21 @@ html, body {
 
 .m-b-50 {
     margin-bottom: 50px;
+}
+
+.center-block {
+    display: block;
+    margin: 0 auto;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ################## */
