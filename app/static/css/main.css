@@ -923,7 +923,20 @@ header, section, footer, aside, nav, main, article, figure {
     margin-left: 50px;
 }
 /* ################## */
-/* END COMMENTS */
+/* PORTFOLIO */
+/* ################## */
+
+.portfolio .spacer {
+    margin: 0 5px;
+}
+
+.portfolio img {
+    display: inline-block;
+    max-width: 100px;
+    max-height: 100px;
+}
+/* ################## */
+/* END PORTFOLIO */
 /* ################## */
 
 /* ==========================================================================
