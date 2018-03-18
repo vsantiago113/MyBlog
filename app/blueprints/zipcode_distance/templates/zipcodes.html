@@ -6,7 +6,7 @@
     <div class="container">
         <h1>USA Zip Codes only!</h1>
         <h3>Distance in miles between two zip codes.</h3>
-        <p class="text-muted">The map will center on the location of the first zip code you enter. The distance is in flight just a straight line from point A and point B.<br>
+        <p class="text-muted">The distance is in flight just a straight line from point A and point B.<br>
         For driving distance check google maps instead.</p>
 
         <div class="row">
@@ -34,27 +34,29 @@
             <h4>The distance between the zip codes {{ zipcode1.zipcode }} and {{ zipcode2.zipcode }} is {{ distance }} miles.</h4>
 
             <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-4">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
                     <h4>Zip Code 1: {{ zipcode1.zipcode }}</h4>
                     <ul>
                         <li>City: {{ zipcode1.city }}</li>
                         <li>State: {{ zipcode1.state }}</li>
+                        <li>Country: {{ zipcode1.country }}</li>
                         <li>Latitude: {{ zipcode1.lat }}</li>
-                        <li>Longitude: {{ zipcode1.long }}</li>
+                        <li>Longitude: {{ zipcode1.lng }}</li>
                         <li><a href="{{ 'https://www.google.com/maps/place/{},+{}+{}/@{},{}'.format(
-                            zipcode1.city, zipcode1.state, zipcode1.zipcode, zipcode1.lat, zipcode1.long
+                            zipcode1.city, zipcode1.state, zipcode1.zipcode, zipcode1.lat, zipcode1.lng
                         ) }}" target="_blank">Check on Google Maps</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-md-5 col-lg-4">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
                     <h4>Zip Code 2: {{ zipcode2.zipcode }}</h4>
                     <ul>
                         <li>City: {{ zipcode2.city }}</li>
                         <li>State: {{ zipcode2.state }}</li>
+                        <li>Country: {{ zipcode2.country }}</li>
                         <li>Latitude: {{ zipcode2.lat }}</li>
-                        <li>Longitude: {{ zipcode2.long }}</li>
+                        <li>Longitude: {{ zipcode2.lng }}</li>
                         <li><a href="{{ 'https://www.google.com/maps/place/{},+{}+{}/@{},{}'.format(
-                            zipcode2.city, zipcode2.state, zipcode2.zipcode, zipcode2.lat, zipcode2.long
+                            zipcode2.city, zipcode2.state, zipcode2.zipcode, zipcode2.lat, zipcode2.lng
                         ) }}" target="_blank">Check on Google Maps</a></li>
                     </ul>
                 </div>
@@ -65,12 +67,19 @@
                     <div id="map" style="height: 400px;"></div>
                 </div>
             </div>
+        {% else %}
+            {% if error %}
+                <h3 class="text-center">{{ error }}</h3>
+                {% if error == 'OVER_QUERY_LIMIT' %}
+                    <h4 class="text-center">Please wait 20 seconds before trying again!</h4>
+                {% endif %}
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}
 
 {% block script %}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO07aZ9UtvQtsjZG9ZRf0eNtVVnXa98qQ&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW7atQDLJ80uCRkZNX5LEFbXUduHCJVQ&callback=initMap" async defer></script>
 <script>
     function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -78,8 +87,8 @@
             zoom:8
         });
 
-        var point_a = new google.maps.LatLng({{ zipcode1.lat }}, {{ zipcode1.long }});
-        var point_b = new google.maps.LatLng({{ zipcode2.lat }}, {{ zipcode2.long }});
+        var point_a = new google.maps.LatLng({{ zipcode1.lat }}, {{ zipcode1.lng }});
+        var point_b = new google.maps.LatLng({{ zipcode2.lat }}, {{ zipcode2.lng }});
 
         var pointsCoordinates = [
             point_a,

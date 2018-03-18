@@ -730,60 +730,6 @@ header, section, footer, aside, nav, main, article, figure {
 /* ################## */
 
 /* ################## */
-/* CAROUSEL */
-/* ################## */
-#quote-carousel {
-    padding: 0 10px 30px 10px;
-    margin-top: 60px;
-}
-#quote-carousel .carousel-control {
-    background: none;
-    color: #CACACA;
-    font-size: 2.3em;
-    text-shadow: none;
-    margin-top: 30px;
-}
-#quote-carousel .carousel-indicators {
-    position: relative;
-    right: 50%;
-    top: auto;
-    bottom: 0px;
-    margin-top: 20px;
-    margin-right: -19px;
-}
-#quote-carousel .carousel-indicators li {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    opacity: 0.4;
-    overflow: hidden;
-    transition: all .4s ease-in;
-    vertical-align: middle;
-}
-#quote-carousel .carousel-indicators .active {
-    width: 128px;
-    height: 128px;
-    opacity: 1;
-    transition: all .2s;
-}
-.item blockquote {
-    border-left: none;
-    margin: 0;
-}
-.item blockquote p:before {
-    content: "\f10d";
-    font-family: 'Open Sans', sans-serif;
-    float: left;
-    margin-right: 10px;
-}
-/* ################## */
-/* END CAROUSEL */
-/* ################## */
-
-/* ################## */
 /* FOOTER */
 /* ################## */
 .footer {
@@ -828,7 +774,7 @@ header, section, footer, aside, nav, main, article, figure {
 /* ################## */
 /* ABOUT ME */
 /* ################## */
-.about-me ul {
+.about-me .social-btns ul {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -842,7 +788,7 @@ header, section, footer, aside, nav, main, article, figure {
     float: right;
 }
 
-.about-me ul > li {
+.about-me .social-btns ul > li {
     list-style: none;
     float: left;
 }
