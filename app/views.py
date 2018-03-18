@@ -13,6 +13,7 @@ from app.models import User, followers
 from app.blueprints.blog import blog
 from app.blueprints.blog.models import Post
 from app.blueprints.affiliate_store import affiliate_store
+from app.blueprints.zipcode_distance import zipcode_distance
 from app.blueprints.affiliate_store.models import AffiliateProduct
 from app import csrf
 from app import admin_required, ssl_required
@@ -21,6 +22,7 @@ import boto3
 
 app.register_blueprint(blog)
 app.register_blueprint(affiliate_store)
+app.register_blueprint(zipcode_distance)
 
 
 @app.before_first_request

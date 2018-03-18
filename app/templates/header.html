@@ -26,14 +26,13 @@
                             </ul>
                         </div>
                     </li>
-{#                    <li>#}
-{#                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Crypto Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>#}
-{#                            <ul id="drop-down-tools">#}
-{#                                <li><a href="javascript: void(0);">Bitcoin Address</a></li>#}
-{#                                <li><a href="javascript: void(0);">Brain Wallet</a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </li>#}
+                    <li>
+                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <ul id="drop-down-tools">
+                                <li><a href="{{ url_for('zipcode_distance.zip_codes') }}">Zip Codes Distance</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li>
                         <div class="drop-down"><a href="#" id="dropdown-btn-store">Store <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                             <ul id="drop-down-store">
@@ -59,14 +58,13 @@
                     <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
                 {% else %}
                     <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-{#                    <li>#}
-{#                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Crypto Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>#}
-{#                            <ul id="drop-down-tools">#}
-{#                                <li><a href="javascript: void(0);">Bitcoin Address</a></li>#}
-{#                                <li><a href="javascript: void(0);">Brain Wallet</a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </li>#}
+                    <li>
+                        <div class="drop-down"><a href="#" id="dropdown-btn-tools">Tools <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <ul id="drop-down-tools">
+                                <li><a href="{{ url_for('zipcode_distance.zip_codes') }}">Zip Codes Distance</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="{{ url_for('blog.view_posts') }}">Blog</a></li>
                     <li><a href="{{ url_for('affiliate_store.view_store') }}">Store</a></li>
                     <li><a href="{{ url_for('registration') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
