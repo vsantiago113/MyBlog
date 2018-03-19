@@ -6,69 +6,72 @@
     <div class="container">
         <h3>Brainwallet</h3>
         <hr>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                <label for="passphrase">Passphrase</label>
-                <div class="input-group">
-                    <input class="form-control" type="password" id="passphrase" name="passphrase" value="coinbase is awesome">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" id="btn-passphrase" onclick="togglePassphrase()">Show</button>
-                    </span>
+        <form role="form" method="POST" action="">
+            <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="passphrase">Passphrase / Seed</label>
+                    <div class="input-group">
+                        <input class="form-control" type="password" id="passphrase" name="passphrase" value="{{ bitcoin.seed }}" autofocus required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btn-passphrase" onclick="togglePassphrase()">Show</button>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                <label for="priv_key">Private Key</label>
-                <div class="input-group">
-                    <input class="form-control" type="password" id="priv_key" name="priv_key" value="5Jtn3CvUuVVvjYEbVo7qJy3L8jVTSxjQ7mhRmF32rvjnTmGqzYZ" readonly>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" id="btn-priv-key" onclick="togglePrivKey()">Show</button>
-                    </span>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="priv_key">Private Key as Wallet Import Format (WIF)</label>
+                    <div class="input-group">
+                        <input class="form-control" type="password" id="priv_key" name="priv_key" value="{{ bitcoin.priv_key }}" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btn-priv-key" onclick="togglePrivKey()">Show</button>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                <label for="pub_key">Public Key</label>
-                <input class="form-control" type="text" id="pub_key" name="pub_key" value="04be9a74952d4b7d34410f6de494d4b21266adab50cd92817953291c51e5cb662ff995d3dfa171e1869ca613f09356cd7e6d70e303067ffda5b7eaff254a9f88b6" readonly>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="pub_key">Public Key</label>
+                    <input class="form-control" type="text" id="pub_key" name="pub_key" value="{{ bitcoin.pub_key }}" readonly>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                <label for="secret_exp">Secret Exponent</label>
-                <input class="form-control" type="text" id="secret_exp" name="secret_exp" value="8de484c9987a57e93807e96e2ba27497c0b8e3f0c124b843472121278bce6598" readonly>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="secret_exp">Secret Exponent / Private Key</label>
+                    <input class="form-control" type="text" id="secret_exp" name="secret_exp" value="{{ bitcoin.secret_exp }}" readonly>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input class="form-control" type="text" id="address" name="address" value="1G3eNbZYY2UpkyY7t55Xfais1qXcgB9RmK" readonly>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input class="form-control" type="text" id="address" name="address" value="{{ bitcoin.address }}" readonly>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-group">
-                <label for="hash160">HASH160</label>
-                <input class="form-control" type="text" id="hash160" name="hash160" value="a509ea60e3ed9666bcac9568ee7062e3e245b27d" readonly>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="hash160">HASH160</label>
+                    <input class="form-control" type="text" id="hash160" name="hash160" value="{{ bitcoin.hash160 }}" readonly>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <h4 class="text-muted text-center">Address QR Code</h4>
-            <img class="img-responsive img-thumbnail block-center" src="img/download.gif" alt="">
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <h4 class="text-muted text-center">Private Key QR Code</h4>
-            <img class="img-responsive img-thumbnail block-center" src="img/download.gif" alt="">
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <h4 class="text-muted text-center">Passphrase QR Code</h4>
-            <img class="img-responsive img-thumbnail block-center" src="img/download.gif" alt="">
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
-            <div class="form-group">
-                <button class="btn btn-default btn-lg">Generate</button>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <h4 class="text-muted text-center">Address QR Code</h4>
+                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_address }}" alt="">
             </div>
-        </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <h4 class="text-muted text-center">Private Key QR Code</h4>
+                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_priv_key }}" alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <h4 class="text-muted text-center">Passphrase QR Code</h4>
+                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_passphrase }}" alt="">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
+                <div class="form-group">
+                    <button class="btn btn-default btn-lg" type="submit">Generate</button>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
 

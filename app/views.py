@@ -1,8 +1,6 @@
-from flask import redirect, url_for, render_template, flash, g, session, request, jsonify
+from flask import redirect, url_for, render_template, flash, g, request, jsonify
 from flask_login import login_required, login_user, logout_user
-from functools import wraps
 from flask_bcrypt import generate_password_hash
-from werkzeug.utils import secure_filename
 import os
 import uuid
 from app import app
@@ -15,6 +13,7 @@ from app.blueprints.blog.models import Post
 from app.blueprints.affiliate_store import affiliate_store
 from app.blueprints.zipcode_distance import zipcode_distance
 from app.blueprints.affiliate_store.models import AffiliateProduct
+from app.blueprints.bitcoin import bitcoin
 from app import csrf
 from app import admin_required, ssl_required
 from app import recaptcha
@@ -23,6 +22,7 @@ import boto3
 app.register_blueprint(blog)
 app.register_blueprint(affiliate_store)
 app.register_blueprint(zipcode_distance)
+app.register_blueprint(bitcoin)
 
 
 @app.before_first_request
@@ -47,6 +47,7 @@ def load_user(user_id):
 
 
 @app.route("/")
+@ssl_required
 def home():
     user = User.query.get(1)
     posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
