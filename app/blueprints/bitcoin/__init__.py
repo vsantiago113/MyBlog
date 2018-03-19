@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, abort
 import hashlib
-from app.blueprints.bitcoin.lib import ecdsa
-from app.blueprints.bitcoin.lib import base58
+from app.blueprints.bitcoin.crypto_lib import ecdsa
+from app.blueprints.bitcoin.crypto_lib import base58
 import binascii
 
 bitcoin = Blueprint("bitcoin", __name__, template_folder="templates", static_folder="static",
