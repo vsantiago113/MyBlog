@@ -56,15 +56,9 @@
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <h4 class="text-muted text-center">Address QR Code</h4>
-                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_address }}" alt="">
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <h4 class="text-muted text-center">Private Key QR Code</h4>
-                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_priv_key }}" alt="">
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <h4 class="text-muted text-center">Passphrase QR Code</h4>
-                <img class="img-responsive img-thumbnail block-center" src="{{ bitcoin.qr_passphrase }}" alt="">
+                <a href="{{ bitcoin.qr_address }}">
+                    <img class="img-responsive img-thumbnail block-center" src="{{ qrcode }}" alt="">
+                </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-t-10">
                 <div class="form-group">

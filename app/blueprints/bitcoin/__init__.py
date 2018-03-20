@@ -3,6 +3,7 @@ import hashlib
 from app.blueprints.bitcoin.crypto_lib import ecdsa
 from app.blueprints.bitcoin.crypto_lib import base58
 import binascii
+import qrcode
 
 bitcoin = Blueprint("bitcoin", __name__, template_folder="templates", static_folder="static",
                     url_prefix="/bitcoin")
@@ -70,10 +71,20 @@ def brainwallet():
                             secret_exp=secret_exponent,
                             address=address,
                             hash160=hash160,
-                            qr_address='',
-                            qr_priv_key='',
-                            qr_passphrase='')
-            return render_template('brainwallet.html', bitcoin=_bitcoin)
+                            qr_address='https://blockchain.info/address/{}'.format(address))
+
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data('https://blockchain.info/address/{}'.format(address))
+            qr.make(fit=True)
+
+            img = qr.make_image()
+
+            return render_template('brainwallet.html', bitcoin=_bitcoin, qrcode=img)
         else:
             abort(404)
     else:
@@ -83,7 +94,5 @@ def brainwallet():
                         secret_ext='',
                         address='',
                         hash160='',
-                        qr_address='',
-                        qr_priv_key='',
-                        qr_passphrase='')
-        return render_template('brainwallet.html', bitcoin=_bitcoin)
+                        qr_address='')
+        return render_template('brainwallet.html', bitcoin=_bitcoin, qrcode=None)
