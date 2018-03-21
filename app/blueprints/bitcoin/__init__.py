@@ -3,7 +3,6 @@ import hashlib
 from app.blueprints.bitcoin.crypto_lib import ecdsa
 from app.blueprints.bitcoin.crypto_lib import base58
 import binascii
-import qrcode
 
 bitcoin = Blueprint("bitcoin", __name__, template_folder="templates", static_folder="static",
                     url_prefix="/bitcoin")
@@ -57,7 +56,7 @@ def priv_key_to_wif(_priv_key):
     return base58.b58encode(binascii.unhexlify(final_hash.decode('utf-8'))), base58.b58encode(binascii.unhexlify(final_hash_compressed.decode('utf-8')))
 
 
-@bitcoin.route("/", methods=("GET", "POST"))
+@bitcoin.route("/brainwallet", methods=("GET", "POST"))
 def brainwallet():
     if request.method == 'POST':
         form = request.form
@@ -73,18 +72,7 @@ def brainwallet():
                             hash160=hash160,
                             qr_address='https://blockchain.info/address/{}'.format(address))
 
-            qr = qrcode.QRCode(
-                version=1,
-                error_correction=qrcode.constants.ERROR_CORRECT_L,
-                box_size=10,
-                border=4,
-            )
-            qr.add_data('https://blockchain.info/address/{}'.format(address))
-            qr.make(fit=True)
-
-            img = qr.make_image()
-
-            return render_template('brainwallet.html', bitcoin=_bitcoin, qrcode=img)
+            return render_template('brainwallet.html', bitcoin=_bitcoin)
         else:
             abort(404)
     else:
@@ -95,4 +83,4 @@ def brainwallet():
                         address='',
                         hash160='',
                         qr_address='')
-        return render_template('brainwallet.html', bitcoin=_bitcoin, qrcode=None)
+        return render_template('brainwallet.html', bitcoin=_bitcoin)
