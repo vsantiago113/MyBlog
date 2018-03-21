@@ -47,7 +47,7 @@ def load_user(user_id):
 
 
 @app.route("/")
-# @ssl_required
+@ssl_required
 def home():
     user = User.query.get(1)
     posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
