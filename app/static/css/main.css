@@ -1,235 +1,19 @@
-/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-    color: #222;
-    font-size: 1em;
-    line-height: 1.4;
-}
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-/* ==========================================================================
-   Browser Upgrade Prompt
-   ========================================================================== */
-
-.browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
 /* ################## */
 /* GENERAL CSS */
 /* ################## */
-html, body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans');
+
+html, body {
     background-color: #FCFCFC;
     color: #212121;
-    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
-}
-
-header, section, footer, aside, nav, main, article, figure {
-    display: block;
-}
-
-#wrapper {
-    min-height: 100%;
-}
-
-#content {
-    overflow: auto;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .block-center {
     display: block;
     margin: 0 auto;
-}
-.divider-blue {
-    max-width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #0099CC;
-}
-
-.divider-red {
-    max-width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #E74C3C;
-}
-
-.divider-yellow {
-    max-width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #F4D03F;
-}
-
-.divider-green {
-    max-width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #28B463;
-}
-
-.divider-purple {
-    max-width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #A569BD;
-}
-
-.section-a {
-    width: 100%;
-    background-color: #fcfcfc;
-    color: #000;
-}
-
-.section-b {
-    width: 100%;
-    background-color: #17202A;
-    color: #fff;
-}
-
-.call-to-action {
-    background-color: #154360;
-    color: #fff;
-    min-height: 100px;
-    font-size: 1.3em;
-    text-align: center;
-    padding: 30px 0;
-}
-
-.call-to-action > p {
-    margin: 0 auto 10px;
-}
-
-.call-to-action > a {
-    width: 175px;
-    display: block;
-    margin: 0 auto;
-    padding: 16px 0;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.input-search {
-    position: relative;
-}
-
-.input-search input {
-    text-indent: 24px;
-}
-
-.input-search i {
-    font-size: 24px;
-    position: absolute;
-    top: 16px;
-    left: 10px;
-    color: #ccc;
-}
-
-.input-box {
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    width: 100%;
-    border-radius: 4px;
-    display: inline-block;
-    padding: 12px 20px;
-    box-sizing: border-box;
-}
-
-.text-white {
-	color: #fff;
-}
-
-.float-left {
-	float: left;
-}
-
-.float-right {
-	float: right;
 }
 
 .m-t-10 {
@@ -272,6 +56,56 @@ header, section, footer, aside, nav, main, article, figure {
     margin-bottom: 50px;
 }
 
+.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+}
+
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
+}
+
+.input-search {
+    position: relative;
+}
+
+.input-search input {
+    text-indent: 24px;
+}
+
+.input-search i {
+    font-size: 24px;
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    color: #ccc;
+}
+
+.input-box {
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 12px 20px;
+    box-sizing: border-box;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
 .center-block {
     display: block;
     margin: 0 auto;
@@ -287,6 +121,33 @@ header, section, footer, aside, nav, main, article, figure {
   flex-direction: column;
 }
 
+.btnx {
+    display: inline-block;
+    padding: 8px 24px;
+    background-color: #2C333D;
+    border-radius: 5px;
+    color: #dbdbdb;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+.btnx:hover,
+.btnx:visited,
+.btnx:active,
+.btnx:link {
+    text-decoration: none;
+}
+
+.btnx:hover {
+    color: #FFDB4F;
+    border: 3px solid #FFDB4F;
+}
+
+.btnx-lg {
+    font-size: 34px;
+    padding: 16px 24px;
+}
+
 /* ################## */
 /* END GENERAL CSS */
 /* ################## */
@@ -294,158 +155,117 @@ header, section, footer, aside, nav, main, article, figure {
 /* ################## */
 /* HEADER */
 /* ################## */
-.nav-bar {
-    width: 100%;
+#header-hero {
+    background-image: url("https://s3.amazonaws.com/myblog--flask-bucket/images/header_bg.png");
+    min-height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.nav-bar-dark {
-    background-color: #212121;
+.navbar {
+    background-color: transparent;
+    font-family: 'Lato', sans-serif;
+}
+
+.navbar-right li a {
     color: #fcfcfc;
 }
 
-.nav-bar-dark > div > ul > li > a,
-.nav-bar-dark > div > ul > li > a:active,
-.nav-bar-dark > div > ul > li > a:visited {
-    color: #fcfcfc;
-}
-.nav-bar-dark > div > ul > li > a:hover,
-.nav-bar-dark > div > ul > li > a:hover:active {
-    color: #999;
-}
-.nav-bar-dark > div > .nav-bar-brand > a,
-.nav-bar-dark > div > .nav-bar-brand > a:active,
-.nav-bar-dark > div > .nav-bar-brand > a:visited {
-    color: #fcfcfc;
-}
-.nav-bar-dark > div > .nav-bar-brand > a:hover,
-.nav-bar-dark > div > .nav-bar-brand > a:hover:active {
-    color: #999;
-}
-.nav-bar-dark .drop-down > ul > li > a,
-.nav-bar-dark .drop-down > ul > li > a:active,
-.nav-bar-dark .drop-down > ul > li > a:visited {
-    color: #fcfcfc;
-}
-.nav-bar-dark .drop-down > ul > li > a:hover,
-.nav-bar-dark .drop-down > ul > li > a:hover:active {
-    color: #999;
-}
-.nav-bar-dark .drop-down > ul {
-    background-color: #212121;
-}
-.nav-bar-dark .drop-down > a,
-.nav-bar-dark .drop-down > a:active,
-.nav-bar-dark .drop-down > a:visited {
-    color: #fcfcfc;
-}
-.nav-bar-dark .drop-down > a:hover,
-.nav-bar-dark .drop-down > a:hover:active {
-    color: #999;
+.navbar-right li a:hover {
+    color: #3E7BAC;
+    background-color: transparent;
 }
 
-.nav-bar-brand {
-    float: left;
+.navbar-brand {
+    color: #fcfcfc;
 }
 
-.nav-bar-brand img {
-    display: inline-block;
-    width: 50px;
+.navbar-brand:hover {
+    color: #3E7BAC;
 }
 
-.nav-bar-brand > a {
-    display: inline-block;
-    padding: 24px 8px;
-    text-decoration: none;
+.navbar-toggle {
+    background-color: #fcfcfc;
 }
 
-.nav-bar > div > ul {
-    float: right;
-    list-style: none;
+.icon-bar {
+    background-color: #131313;
+}
+
+.navbar-right .dropdown a {
+    background-color: transparent !important;
+    color: #fcfcfc;
+}
+
+.navbar-right .dropdown a:hover {
+    background-color: transparent;
+    color: #3E7BAC;
+}
+
+.navbar-right .dropdown li:hover {
+    background-color: transparent;
+    color: #3E7BAC;
+}
+
+.navbar-right .dropdown .dropdown-menu {
+    background-color: transparent;
+}
+
+.navbar-right .dropdown .dropdown-menu:hover {
+    background-color: transparent;
+}
+
+.jumbotron {
     margin: 0;
     padding: 0;
+    background-color: transparent;
 }
 
-.nav-bar > div > ul > li {
-    float: left;
+.jumbotron h1 {
+    color: #fcfcfc;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 80px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
-.nav-bar > div > ul > li > a {
-    display: block;
-    padding: 24px 8px;
-    text-decoration: none;
-}
-
-.drop-down {
-    display: block;
-    padding: 24px 8px;
-    position: relative;
-}
-
-.drop-down > ul {
-    display: none;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    position: absolute;
-    width: 150px;
-}
-
-.drop-down > ul > li > a {
-    display: block;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-
-.drop-down > a,
-.drop-down > a:active,
-.drop-down > a:visited,
-.drop-down > a:hover,
-.drop-down > a:hover:active {
-    text-decoration: none;
-}
-
-.container-burger-icon {
-    display: none;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: #fcfcfc;
-    margin: 6px 0;
-    transition: 0.4s;
-}
-
-.change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px) ;
-}
-
-.change .bar2 {opacity: 0;}
-
-.change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-8px, -8px);
+.jumbotron h3 {
+    color: #dbdbdb;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Lato', sans-serif;
 }
 /* ################## */
 /* END HEADER */
 /* ################## */
 
 /* ################## */
-/* PARALLAX */
+/* WHAT I DO */
 /* ################## */
-.parallax {
-    background-image: url("");
-    min-height: 500px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.what-i-do {
+    text-align: center;
+}
+
+.what-i-do h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.what-i-do hr {
+    border: 3px solid #FFDB4F;
+    width: 200px;
+}
+
+.what-i-do h3 {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 /* ################## */
-/* END PARALLAX */
+/* END WHAT I DO */
 /* ################## */
 
 /* ################## */
@@ -582,190 +402,81 @@ header, section, footer, aside, nav, main, article, figure {
     max-height: 100%;
 }
 
+.my-blog {
+    text-align: center;
+    background-color: #3E7BAC;
+}
+
+.my-blog h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: #fcfcfc;
+}
+
+.my-blog > hr {
+    border: 3px solid #FFDB4F;
+    width: 200px;
+}
+
+.my-blog-articles {
+    margin: 30px 20px;
+}
+
+.my-blog-articles .article {
+    background-color: #fcfcfc;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.my-blog-articles .article h3 {
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+}
+
 /* ################## */
 /* END BLOG ARTICLE */
 /* ################## */
 
 /* ################## */
-/* STORE PRODUCTS */
-/* ################## */
-.store-products {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 5px;
-    box-sizing: border-box;
-    background-color: #fff;
-    color: #000;
-}
-
-.store-products:hover {
-    box-shadow: 5px 5px 8px #333;
-    transition: 0.4s;
-}
-
-.store-products > .price-buy > span {
-    float: left;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #27AE60;
-}
-
-.store-products > .price-buy > a {
-    float: right;
-    min-width: 100px;
-}
-/* ################## */
-/* END STORE PRODUCTS */
-/* ################## */
-
-/* ################## */
-/* PRICE TABLE */
-/* ################## */
-.price-table {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    background-color: #fff;
-    color: #000;
-}
-
-.price-table:hover {
-    box-shadow: 5px 5px 8px #333;
-    transition: 0.4s;
-}
-
-.price-table > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.price-table > ul > li {
-    display: block;
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-    font-weight: bold;
-}
-
-.price-table > .price-table-title {
-    display: block;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5em;
-}
-
-.price-table > .price-table-price-box {
-    text-align: center;
-    padding: 25px;
-}
-
-.price-table > .price-table-price-box > .price-table-price {
-    display: block;
-    font-size: 3em;
-    font-weight: bold;
-}
-
-.price-table > .price-table-price-box > .price-table-plan {
-    display: block;
-}
-
-.price-table > .price-table-button {
-    padding: 10px 0;
-}
-
-.price-table > .price-table-button > button {
-    padding: 10px 0;
-    display: block;
-    width: 150px;
-    margin: 0 auto;
-}
-
-.price-table-green > .price-table-title {
-    background-color: #17A589;
-    color: #fff;
-}
-
-.price-table-green > .price-table-price-box {
-    background-color: #45B39D;
-    color: #fff;
-}
-
-.price-table-blue > .price-table-title {
-    background-color: #3498DB;
-    color: #fff;
-}
-
-.price-table-blue > .price-table-price-box {
-    background-color: #5DADE2;
-    color: #fff;
-}
-
-.price-table-gray > .price-table-title {
-    background-color: #34495E;
-    color: #fff;
-}
-
-.price-table-gray > .price-table-price-box {
-    background-color: #5D6D7E;
-    color: #fff;
-}
-/* ################## */
-/* END PRICE TABLE */
-/* ################## */
-
-/* ################## */
-/* SECTION ADS */
-/* ################## */
-.feature-ad-section {
-    padding: 50px;
-}
-
-.feature-ad-section > div > button {
-    display: block;
-    margin: 10px auto;
-    min-width: 100px;
-}
-/* ################## */
-/* END SECTION ADS */
-/* ################## */
-
-/* ################## */
 /* FOOTER */
 /* ################## */
-.footer {
-    background-color: #212121;
+.my-footer {
+    background-color: #2C333D;
     color: #fcfcfc;
-    position: relative;
-    width: 100%;
 }
 
-.footer a:link,
-.footer a:visited,
-.footer a:active {
-    text-decoration: none;
-    color: #808B96;
+.my-footer hr {
+    border: 1px solid #FFDB4F;
 }
 
-.footer a:hover {
-    color: #2980B9;
+.my-footer .btn-default {
+    width: 100px;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
 }
 
-.footer .copyright {
+.my-footer .contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.my-footer .contact-info li {
     margin: 10px 0;
 }
 
-.footer .footer-navigation ul {
-    margin: 0;
-    padding: 0;
+.my-footer .contact-info a {
+    margin-left: 10px;
 }
 
-.footer .footer-navigation li {
-    list-style: none;
+.footer-copyright {
+    text-align: center;
+    color: #fcfcfc;
 }
 
-.footer .footer-navigation li a {
-    display: block;
-    padding: 2px;
+.footer-social img {
+    margin: 0 5px;
 }
 /* ################## */
 /* END FOOTER */
@@ -774,56 +485,29 @@ header, section, footer, aside, nav, main, article, figure {
 /* ################## */
 /* ABOUT ME */
 /* ################## */
-.about-me .social-btns ul {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.copyright-left {
-    float: left;
-}
-
-.copyright-right {
-    float: right;
-}
-
-.about-me .social-btns ul > li {
-    list-style: none;
-    float: left;
-}
-
-.about-me i {
-    padding: 10px;
+.about-me {
+    background-image: url("https://s3.amazonaws.com/myblog--flask-bucket/images/aboutme_bg.png");
+    height: 562px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .about-me h1 {
-    margin: 0 0 16px 0;
-    border-bottom: 2px solid #ccc;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+
+    color: #fcfcfc;
+}
+
+.about-me hr {
+    border: 3px solid #FFDB4F;
+    width: 200px;
 }
 
 .about-me p {
-    color: #4d4d4d;
-}
-
-.about-me .fa-twitter-square {
-    color: #1DA1F2;
-}
-
-.about-me .fa-youtube-square {
-    color: #FF0000;
-}
-
-.about-me .fa-facebook-square {
-    color: #3B5998;
-}
-
-.about-me .fa-linkedin {
-    color: #007BB5;
-}
-
-.footer .fa-map-marker {
-    color: #DB4437;
+    color: #fcfcfc;
 }
 /* ################## */
 /* END ABOUT ME */
@@ -869,95 +553,57 @@ header, section, footer, aside, nav, main, article, figure {
     margin-left: 50px;
 }
 /* ################## */
-/* PORTFOLIO */
+/* MY WORK */
 /* ################## */
-
-.portfolio .spacer {
-    margin: 0 5px;
+.my-work {
+    text-align: center;
 }
 
-.portfolio img {
-    display: inline-block;
-    max-width: 100px;
-    max-height: 100px;
+.my-work h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.my-work > hr {
+    border: 3px solid #FFDB4F;
+    width: 200px;
+}
+
+.my-work .row-images {
+    
+}
+
+.my-work > div hr {
+    border: 1px solid #ccc;
+    margin: 0 10px;
+}
+
+.my-work h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+.my-work p {
+    text-align: left !important;
+    margin-bottom: 40px;
+}
+
+.my-work-panel {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.my-work-panel img {
+    margin: 0 10px 10px 10px;
 }
 /* ################## */
-/* END PORTFOLIO */
+/* END MY WORK */
 /* ################## */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
 
 .hidden {
     display: none !important;
 }
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    -webkit-clip-path: inset(50%);
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap; /* 1 */
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    -webkit-clip-path: none;
-    clip-path: none;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-    white-space: inherit;
-}
-
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
 
 .clearfix:before,
 .clearfix:after {
@@ -969,202 +615,30 @@ header, section, footer, aside, nav, main, article, figure {
     clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-/* FOOTER Bootstrap cols */
-@media only screen and (max-width: 475px) {
-    /* Very small less than 350px */
-    #content {
-        overflow: auto;
-        padding-bottom: 350px;
+@media only screen and (max-width: 768px) {
+    .about-me {
+        background-image: none;
+        height: inherit;
+        background-color: #3E7BAC;
+        padding: 10px;
     }
-    .footer {
-        height: 350px;
-        margin-top: -350px;
-    }
-}
-
-@media only screen and (min-width: 475px) {
-    /* .col-xs-$: Phones less than 768px */
-    #content {
-        overflow: auto;
-        padding-bottom: 290px;
-    }
-    .footer {
-        height: 290px;
-        margin-top: -290px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    /* .col-sm-$: Tablets 768px and Up */
-    #content {
-        overflow: auto;
-        padding-bottom: 175px;
-    }
-    .footer {
-        height: 175px;
-        margin-top: -175px;
+    
+    .about-me h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 0;
     }
 }
 
 @media only screen and (min-width: 992px) {
-    /* .col-md-$: Desktops 992px and Up */
-    #content {
-        overflow: auto;
-        padding-bottom: 175px;
-    }
-    .footer {
-        height: 175px;
-        margin-top: -175px;
-    }
-}
-/* END FOOTER */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media only screen and (max-width: 48em /* 768px */) {
-    .container-burger-icon {
-        display: inline-block;
-        position: fixed;
-        margin-top: 10px;
-    }
-    
-    .nav-bar-brand {
-        float: none;
-        text-align: center;
-    }
-    
-    .nav-bar > div > ul {
-        float: none;
-    }
-    
-    .nav-bar > div > ul > li {
-        float: none;
-        text-align: center;
-    }
-    
-    .nav-bar > div > ul > li > a {
-        font-weight: bold;
-    }
-
-    .burger-open {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0, 0.9);
-        overflow-x: hidden;
-        transition: 0.5s;
-    }
-
-    .burger-close {
-        display: none;
-    }
-    
-    .drop-down {
-        
-    }
-
-    .drop-down > ul {
-        position: static;
-        text-align: right;
-        width: 125px;
-    }
-    
-    .nav-bar-dark .drop-down > ul {
-        background-color: inherit;
+    .about-me h1 {
+        margin-top: 100px;
     }
 }
 
-@media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-    *,
-    *:before,
-    *:after {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
-
-    pre {
-        white-space: pre-wrap !important;
-    }
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
+@media only screen and (max-width: 992px) {
+    .about-me h1 {
+        margin-top: 80px;
+        color: #131313;
     }
 }

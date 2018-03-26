@@ -1,59 +1,69 @@
-
-
-<footer class="footer clearfix">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="footer-navigation">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-sm-pull-1 col-md-12 col-md-pull-3 col-lg-12 col-lg-pull-3">
-                            <h4 class="text-center">Navigation</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                            <ul class="footer-navigation">
-                                <li><a href="{{ url_for('home') }}">Home</a></li>
-                                <li><a href="{{ url_for('blog.view_posts') }}">Blog</a></li>
-                                <li><a href="#">Crypto Tools</a></li>
-                                <li><a href="{{ url_for('affiliate_store.view_store') }}">Store</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-                            <ul class="footer-navigation">
-                                <li><a href="{{ url_for('login') }}">Sign-in</a></li>
-                                <li><a href="{{ url_for('registration') }}">Sign-up</a></li>
-                                <li><a href="{{ url_for('terms_of_service') }}">Terms of Service</a></li>
-                                <li><a href="{{ url_for('privacy_policy') }}">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="footer-navigation">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-sm-pull-1 col-md-12 col-md-pull-3 col-lg-12 col-lg-pull-1">
-                            <h4 class="text-center">Contact Info</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <p><i class="fas fa-phone-square fa-lg"></i><a href="tel:2629776565"> (262) 977-6565</a></p>
-                            <p><i class="far fa-envelope fa-lg"></i><a href="mailto:support@thejackofit.com"> support@thejackofit.com</a></p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-sm-push-1 col-md-6 col-lg-6">
-                            <p><i class="fas fa-map-marker fa-lg"></i><a href="https://www.google.com/maps/place/Milwaukee,+WI+53220/@42.9623345,-88.009629,14z/data=!3m1!4b1!4m5!3m4!1s0x8805104a8e233ea9:0x89d35ff68e0b2362!8m2!3d42.9678365!4d-87.9873724" target="_blank"> PO BOX 20706<br />
-                                Greenfield, WI 53220</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <p>&copy; Copyright 2018. All Rights Reserved.</p>
-            </div>
-        </div>
-    </div>
+<footer>
+	<div class="container my-footer">
+		<div class="row">
+			<div class="col-md-4 col-lg-4">
+				<h3>Contact info</h3>
+				<hr>
+				<ul class="contact-info">
+					<li><img src="https://s3.amazonaws.com/myblog--flask-bucket/images/envelope.png" alt="">
+						<a href="mailto:support@thejackofit.com">support@thejackofit.com</a>
+					</li>
+					<li><img src="https://s3.amazonaws.com/myblog--flask-bucket/images/phone-square.png" alt="">
+						<a href="tel:2629776565">(262) 977-6565</a>
+					</li>
+					<li><img src="https://s3.amazonaws.com/myblog--flask-bucket/images/map-marker-alt.png" alt="" style="margin-right: 9px;">
+						<a href="https://www.google.com/maps/place/Milwaukee,+WI+53228/@42.966203,-88.0600245" target="_blank">Milwaukee, WI 53228</a>
+					</li>
+				</ul>
+				<h3 class="m-t-30">Follow me</h3>
+				<hr>
+				<div class="footer-social">
+					<a href="https://twitter.com/vsantiago113" target="_blank">
+						<img src="https://s3.amazonaws.com/myblog--flask-bucket/images/twitter-square.png">
+					</a>
+					<a href="https://www.youtube.com/user/VSantiago113" target="_blank">
+						<img src="https://s3.amazonaws.com/myblog--flask-bucket/images/youtube-square.png">
+					</a>
+					<a href="https://www.linkedin.com/in/vsantiago113" target="_blank">
+						<img src="https://s3.amazonaws.com/myblog--flask-bucket/images/linkedin.png">
+					</a>
+					<a href="https://github.com/vsantiago113" target="_blank">
+						<img src="https://s3.amazonaws.com/myblog--flask-bucket/images/github-square.png">
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-4">
+				<h3>Navigation</h3>
+				<hr>
+				<ul>
+					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('blog.view_posts') }}">Blog</a></li>
+					<li><a href="{{ url_for('login') }}">Login</a></li>
+					<li><a href="{{ url_for('registration') }}">Signup</a></li>
+					<li><a href="{{ url_for('terms_of_service') }}">Terms of Service</a></li>
+					<li><a href="{{ url_for('privacy_policy') }}">Privacy Policy</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4 col-lg-4">
+				<h3>Send me a message</h3>
+				<hr>
+				<form role="form" method="POST" action="">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Email Address...">
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Subject...">
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" rows="3" id="about" placeholder="Message..."></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default block-center" type="button">Send</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<hr>
+		<p class="footer-copyright m-b-10">&copy; Copyright 2018. All Rights Reserved.</p>
+	</div>
 </footer>

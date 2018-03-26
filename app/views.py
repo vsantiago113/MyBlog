@@ -10,9 +10,7 @@ from app.forms import LoginForm, RegistrationForm, ChangeProfileImageForm, Chang
 from app.models import User, followers
 from app.blueprints.blog import blog
 from app.blueprints.blog.models import Post
-from app.blueprints.affiliate_store import affiliate_store
 from app.blueprints.zipcode_distance import zipcode_distance
-from app.blueprints.affiliate_store.models import AffiliateProduct
 from app.blueprints.bitcoin import bitcoin
 from app import csrf
 from app import admin_required, ssl_required
@@ -20,7 +18,6 @@ from app import recaptcha
 import boto3
 
 app.register_blueprint(blog)
-app.register_blueprint(affiliate_store)
 app.register_blueprint(zipcode_distance)
 app.register_blueprint(bitcoin)
 
@@ -50,9 +47,8 @@ def load_user(user_id):
 @ssl_required
 def home():
     user = User.query.get(1)
-    posts = Post.query.order_by(Post.pub_date.desc()).limit(3)
-    products = AffiliateProduct.query.order_by(AffiliateProduct.id.desc()).limit(4)
-    return render_template('index.html', posts=posts, products=products, user=user,
+    posts = Post.query.order_by(Post.pub_date.desc()).limit(6)
+    return render_template('index.html', posts=posts, user=user,
                            bucket_url=app.config.get('BUCKET_URL'),
                            default_photo=app.config.get('DEFAULT_PHOTO'))
 
